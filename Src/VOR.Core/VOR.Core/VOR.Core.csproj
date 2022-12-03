@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4199E710-17DF-4592-90B7-79CF1B8A91D0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VOR.Core</RootNamespace>
+    <AssemblyName>VOR.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="BaseObject.cs" />
+    <Compile Include="CachableObject.cs" />
+    <Compile Include="Contract\IStatutPelerinRepository.cs" />
+    <Compile Include="Contract\IMotifStatutPelerinRepository.cs" />
+    <Compile Include="Contract\IAgenceRepository.cs" />
+    <Compile Include="Contract\IChambreRepository.cs" />
+    <Compile Include="Contract\IAlerteRepository.cs" />
+    <Compile Include="Contract\ITypePelerinRepository.cs" />
+    <Compile Include="Contract\IVaccinRepository.cs" />
+    <Compile Include="Contract\IVisaRepository.cs" />
+    <Compile Include="Contract\IRecuRepository.cs" />
+    <Compile Include="Contract\IRefVilleRepository.cs" />
+    <Compile Include="Contract\ITypeAlerteRepository.cs" />
+    <Compile Include="Contract\ITypeProgrammeRepository.cs" />
+    <Compile Include="Contract\ITypeChambreRepository.cs" />
+    <Compile Include="Contract\ICompAerienneRepository.cs" />
+    <Compile Include="Contract\IEtatCivilRepository.cs" />
+    <Compile Include="Contract\IEvenementRepository.cs" />
+    <Compile Include="Contract\IHotelRepository.cs" />
+    <Compile Include="Contract\IPelerinRepository.cs" />
+    <Compile Include="Contract\IPersonneRepository.cs" />
+    <Compile Include="Contract\IPnrRepository.cs" />
+    <Compile Include="Contract\IProgrammeRepository.cs" />
+    <Compile Include="Contract\IRepository.cs" />
+    <Compile Include="Contract\ISexeRepository.cs" />
+    <Compile Include="Contract\ITypeAgenceRepository.cs" />
+    <Compile Include="Contract\IUtilisateurRepository.cs" />
+    <Compile Include="Contract\ITypeUtilisateurRepository.cs" />
+    <Compile Include="Contract\IRefRegionRepository.cs" />
+    <Compile Include="Contract\IVolRepository.cs" />
+    <Compile Include="Contract\IVilleRepository.cs" />
+    <Compile Include="Contract\ITypePersonneRepository.cs" />
+    <Compile Include="Domain\Agence.cs" />
+    <Compile Include="Domain\TypePelerin.cs" />
+    <Compile Include="Domain\Vaccin.cs" />
+    <Compile Include="Domain\MotifStatutPelerin.cs" />
+    <Compile Include="Domain\StatutPelerin.cs" />
+    <Compile Include="Domain\Chambre.cs" />
+    <Compile Include="Domain\Alerte.cs" />
+    <Compile Include="Domain\Visa.cs" />
+    <Compile Include="Domain\Recu.cs" />
+    <Compile Include="Domain\RefVille.cs" />
+    <Compile Include="Domain\TPelerinPelerin.cs" />
+    <Compile Include="Domain\TypeAlerte.cs" />
+    <Compile Include="Domain\TypeProgramme.cs" />
+    <Compile Include="Domain\TypeChambre.cs" />
+    <Compile Include="Domain\CompAerienne.cs" />
+    <Compile Include="Domain\EtatCivil.cs" />
+    <Compile Include="Domain\Evenement.cs" />
+    <Compile Include="Domain\Hotel.cs" />
+    <Compile Include="Domain\Pelerin.cs" />
+    <Compile Include="Domain\Personne.cs" />
+    <Compile Include="Domain\Pnr.cs" />
+    <Compile Include="Domain\Programme.cs" />
+    <Compile Include="Domain\Sexe.cs" />
+    <Compile Include="Domain\TPelerinHotel.cs" />
+    <Compile Include="Domain\TPersonnePelerin.cs" />
+    <Compile Include="Domain\TProgrammeHotel.cs" />
+    <Compile Include="Domain\TypePersonne.cs" />
+    <Compile Include="Domain\TypeAgence.cs" />
+    <Compile Include="Domain\TypeUtilisateur.cs" />
+    <Compile Include="Domain\Utilisateur.cs" />
+    <Compile Include="Domain\RefRegion.cs" />
+    <Compile Include="Domain\Ville.cs" />
+    <Compile Include="Domain\Vol.cs" />
+    <Compile Include="Domain\Vue\VuePelerin.cs" />
+    <Compile Include="Enum\EnumAgence.cs" />
+    <Compile Include="Enum\EnumTypeAgence.cs" />
+    <Compile Include="Enum\EnumTypeAlerte.cs" />
+    <Compile Include="Enum\EnumVille.cs" />
+    <Compile Include="Enum\EnumTypePersonne.cs" />
+    <Compile Include="Enum\EnumTypeUtilisateur.cs" />
+    <Compile Include="GenericCompare.cs" />
+    <Compile Include="IAggregateRoot.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnitOfWork\IUnitOfWork.cs" />
+    <Compile Include="UnitOfWork\IUnitOfWorkRepository.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Lib\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

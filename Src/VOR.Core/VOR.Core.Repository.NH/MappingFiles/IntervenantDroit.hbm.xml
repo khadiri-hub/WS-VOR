@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="VOR.Core.Domain" assembly="VOR.Core">
+  <class name="IntervenantDroit" table="TFR_INTERVENANT_DROIT">
+    <id name="ID" type="Int32">
+      <column name="ITD_ID" sql-type="int" not-null="true" unique="true" />
+      <generator class="identity" />
+    </id>
+    <property name="Nom" type="String">
+      <column name="ITD_NOM" sql-type="varchar" length="50"  not-null="false" />
+    </property>
+    <property name="Level" type="int">
+      <column name="ITD_LEVEL" sql-type="int" not-null="true" />
+    </property>
+
+    <many-to-one name="IntervenantType" not-null="true" class="IntervenantType" column="ITT_ID" fetch="join" outer-join="true"/>
+
+  </class>
+
+</hibernate-mapping>

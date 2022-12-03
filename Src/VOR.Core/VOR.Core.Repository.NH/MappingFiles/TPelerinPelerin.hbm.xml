@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="VOR.Core.Domain" assembly="VOR.Core">
+  <class name="TPelerinPelerin" table="T_PELERIN_PELERIN">
+    <composite-id>
+      <key-many-to-one name="Pelerin1" class="Pelerin" column="ID_PELERIN_1" />
+      <key-many-to-one name="Pelerin2" class="Pelerin" column="ID_PELERIN_2" />
+    </composite-id>
+    <property name="Couleur">
+      <column name="COULEUR" sql-type="nvarchar" not-null="true" />
+    </property>    
+  </class>
+  
+  <sql-query name="RemovePelerinPelerin">
+    DELETE FROM T_PELERIN_PELERIN WHERE (ID_PELERIN_1 = :pelerinID1 AND ID_PELERIN_2 = :pelerinID2) OR (ID_PELERIN_1 = :pelerinID2 AND ID_PELERIN_2 = :pelerinID1)
+  </sql-query>
+
+  <sql-query name="GetListColorByPelerinIDAndColor">
+    SELECT COULEUR AS Couleur
+    FROM
+    T_PELERIN_PELERIN tp
+    INNER JOIN PELERIN p ON tp.ID_PELERIN_1 = p.ID_PELERIN
+    WHERE ID_PELERIN not in (=:pelerinIDs)
+    AND COULEUR = :couleur
+    AND ID_EVENEMENT = :eventID
+  </sql-query>
+ 
+</hibernate-mapping>

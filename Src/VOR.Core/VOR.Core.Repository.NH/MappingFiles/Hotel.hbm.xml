@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="VOR.Core.Domain" assembly="VOR.Core">
+  <class name="Hotel" table="HOTEL">
+    <id name="ID" type="Int32">
+      <column name="ID_HOTEL" sql-type="int" not-null="true" unique="true" />
+      <generator class="identity" />
+    </id>
+    <many-to-one name="Ville">
+      <column name="ID_VILLE" sql-type="int" not-null="false" />
+    </many-to-one>
+    <property name="Nom">
+      <column name="NOM" sql-type="nvarchar" not-null="true" />
+    </property>
+    <property name="NomFr">
+      <column name="NOM_FR" sql-type="nvarchar" not-null="true" />
+    </property>
+    <property name="Categorie">
+      <column name="CATEGORIE" sql-type="int" not-null="true" />
+    </property>
+    <property name="DistanceToHaram">
+      <column name="DISTANCE_TO_HARAM" sql-type="int" not-null="true" />
+    </property>
+  </class>
+
+  <sql-query name="IsHotelSupprimable" callable="true">
+    DECLARE @nb INT
+
+    SELECT @nb=sum(allReference.nb) FROM
+    (
+    SELECT count(*) as nb FROM T_PELERIN_HOTEL WHERE ID_HOTEL=:Id
+    UNION ALL
+    SELECT count(*) as nb FROM T_PROGRAMME_HOTEL WHERE ID_HOTEL=:Id
+    ) allReference
+
+    IF @nb = 0
+    SELECT 1
+    ELSE
+    SELECT 0
+  </sql-query>
+  
+</hibernate-mapping>

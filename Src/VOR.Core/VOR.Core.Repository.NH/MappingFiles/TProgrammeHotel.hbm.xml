@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="VOR.Core.Domain" assembly="VOR.Core">
+  <class name="TProgrammeHotel" table="T_PROGRAMME_HOTEL" lazy="true" >
+    <composite-id>
+      <key-many-to-one name="Programme" class="Programme" column="ID_PROGRAMME" />
+      <key-many-to-one name="Hotel" class="Hotel" column="ID_HOTEL" />
+    </composite-id>
+  </class>
+</hibernate-mapping>

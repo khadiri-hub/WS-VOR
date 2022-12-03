@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="VOR.Core.Domain" assembly="VOR.Core">
+  <class name="Sexe" table="SEXE">
+    <id name="ID" type="Int32">
+      <column name="ID_SEXE" sql-type="int" not-null="true" unique="true" />
+      <generator class="identity" />
+    </id>
+    <property name="Type">
+      <column name="TYPE" sql-type="nvarchar" not-null="true" />
+    </property>
+  </class>
+</hibernate-mapping>

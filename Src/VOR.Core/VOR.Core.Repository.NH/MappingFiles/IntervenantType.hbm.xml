@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="VOR.Core.Domain" assembly="VOR.Core">
+  <class name="IntervenantType" table="TFR_INTERVENANT_TYPE">
+    <id name="ID" type="Int32">
+      <column name="ITT_ID" sql-type="int" not-null="true" unique="true" />
+      <generator class="identity" />
+    </id>
+    <property name="Nom" type="String">
+      <column name="ITT_NOM" sql-type="varchar" length="50"  not-null="false" />
+    </property>
+  </class>
+
+</hibernate-mapping>

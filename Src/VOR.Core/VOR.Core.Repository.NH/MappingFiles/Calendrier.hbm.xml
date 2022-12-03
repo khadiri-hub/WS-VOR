@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="VOR.Core.Domain" assembly="VOR.Core">
+  <class name="Calendrier" table="T_CAL">
+    <id name="ID" type="Int32">
+      <column name="CAL_JOUR" sql-type="int" not-null="true" unique="true" />
+      <generator class="identity" />
+    </id>
+    <property name="DateJour" type="DateTime">
+      <column name="CAL_DATE_JOUR" sql-type="datetime" not-null="false" />
+    </property>
+    <property name="EvenementID" type="int">
+      <column name="CAL_EVT_ID" sql-type="int" not-null="false" />
+    </property>
+    <property name="Obs" type="String">
+      <column name="CAL_OBS" length="50" sql-type="nvarchar" />
+    </property>
+    <property name="EstTournoi" type="bool">
+      <column name="CAL_ESTTOURNOI" sql-type="bool" not-null="false" />
+    </property>
+    <property name="EstAcces" type="bool">
+      <column name="CAL_ESTACCES" sql-type="bool" not-null="false" />
+    </property>
+    <property name="EstRestau" type="bool">
+      <column name="CAL_ESTRESTO" sql-type="bool" not-null="false" />
+    </property>
+
+    <property name="EstTransport" type="bool">
+      <column name="CAL_ESTTRANSPORT" sql-type="bool" not-null="false" />
+    </property>
+
+    <property name="EstInvitation" type="bool">
+      <column name="CAL_EST_INVITATION" sql-type="bool" not-null="false" />
+    </property>
+    <property name="EstQualif" type="bool">
+      <column name="CAL_ESTQUALIF" sql-type="bool" not-null="true" />
+    </property>
+    <property name="Image" type="BinaryBlob" lazy="true">
+      <column name="CAL_IMAGE"  sql-type="byte[]" />
+    </property>
+    <property name="NumJournee" type="int">
+      <column name="CAL_NUM_JOURNEE" sql-type="int" not-null="false" />
+    </property>
+  </class>
+
+  <sql-query name="GetCalendrierListBySemainePourResto">
+    select
+    max(case when upper(rtrim(ltrim([CAL_NOM_JOUR])))='LUNDI' then convert(varchar(10),[CAL_DATE_JOUR],120) else '' end) as Lundi,
+    max(case when upper(rtrim(ltrim([CAL_NOM_JOUR])))='MARDI' then convert(varchar(10),[CAL_DATE_JOUR],120) else '' end) as Mardi,
+    max(case when upper(rtrim(ltrim([CAL_NOM_JOUR])))='MERCREDI' then convert(varchar(10),[CAL_DATE_JOUR],120) else '' end) as Mercredi,
+    max(case when upper(rtrim(ltrim([CAL_NOM_JOUR])))='JEUDI' then convert(varchar(10),[CAL_DATE_JOUR],120) else '' end) as Jeudi,
+    max(case when upper(rtrim(ltrim([CAL_NOM_JOUR])))='VENDREDI' then convert(varchar(10),[CAL_DATE_JOUR],120) else '' end) as Vendredi,
+    max(case when upper(rtrim(ltrim([CAL_NOM_JOUR])))='SAMEDI' then convert(varchar(10),[CAL_DATE_JOUR],120) else '' end) as Samedi,
+    max(case when upper(rtrim(ltrim([CAL_NOM_JOUR])))='DIMANCHE' then convert(varchar(10),[CAL_DATE_JOUR],120) else '' end) as Dimanche
+    from (select [CAL_NOM_JOUR],[CAL_DATE_JOUR], DATEPART(ISO_WEEK, [CAL_DATE_JOUR]) as decal,row_id=row_number() over(partition by [CAL_NOM_JOUR] order by [CAL_DATE_JOUR]) from [T_CAL] where CAL_EVT_ID =:eventId and CAL_ESTRESTO = 1) as t
+    group by decal
+  </sql-query>
+
+  <sql-query name="GetCalendrierListBySemaine">
+    select
+    max(case when upper(rtrim(ltrim([CAL_NOM_JOUR])))='LUNDI' then convert(varchar(10),[CAL_DATE_JOUR],120) else '' end) as Lundi,
+    max(case when upper(rtrim(ltrim([CAL_NOM_JOUR])))='MARDI' then convert(varchar(10),[CAL_DATE_JOUR],120) else '' end) as Mardi,
+    max(case when upper(rtrim(ltrim([CAL_NOM_JOUR])))='MERCREDI' then convert(varchar(10),[CAL_DATE_JOUR],120) else '' end) as Mercredi,
+    max(case when upper(rtrim(ltrim([CAL_NOM_JOUR])))='JEUDI' then convert(varchar(10),[CAL_DATE_JOUR],120) else '' end) as Jeudi,
+    max(case when upper(rtrim(ltrim([CAL_NOM_JOUR])))='VENDREDI' then convert(varchar(10),[CAL_DATE_JOUR],120) else '' end) as Vendredi,
+    max(case when upper(rtrim(ltrim([CAL_NOM_JOUR])))='SAMEDI' then convert(varchar(10),[CAL_DATE_JOUR],120) else '' end) as Samedi,
+    max(case when upper(rtrim(ltrim([CAL_NOM_JOUR])))='DIMANCHE' then convert(varchar(10),[CAL_DATE_JOUR],120) else '' end) as Dimanche
+    from (select [CAL_NOM_JOUR],[CAL_DATE_JOUR], DATEPART(ISO_WEEK, [CAL_DATE_JOUR]) as decal,row_id=row_number() over(partition by [CAL_NOM_JOUR] order by [CAL_DATE_JOUR]) from [T_CAL] where CAL_EVT_ID =:eventId and CAL_ESTACCES = 1  ) as t
+    group by decal
+  </sql-query>
+
+  <sql-query name="GetCalendrierListBySemainePourBracelet">
+    select
+    max(case when upper(rtrim(ltrim([CAL_NOM_JOUR])))='LUNDI' then convert(varchar(10),[CAL_DATE_JOUR],120) else '' end) as Lundi,
+    max(case when upper(rtrim(ltrim([CAL_NOM_JOUR])))='MARDI' then convert(varchar(10),[CAL_DATE_JOUR],120) else '' end) as Mardi,
+    max(case when upper(rtrim(ltrim([CAL_NOM_JOUR])))='MERCREDI' then convert(varchar(10),[CAL_DATE_JOUR],120) else '' end) as Mercredi,
+    max(case when upper(rtrim(ltrim([CAL_NOM_JOUR])))='JEUDI' then convert(varchar(10),[CAL_DATE_JOUR],120) else '' end) as Jeudi,
+    max(case when upper(rtrim(ltrim([CAL_NOM_JOUR])))='VENDREDI' then convert(varchar(10),[CAL_DATE_JOUR],120) else '' end) as Vendredi,
+    max(case when upper(rtrim(ltrim([CAL_NOM_JOUR])))='SAMEDI' then convert(varchar(10),[CAL_DATE_JOUR],120) else '' end) as Samedi,
+    max(case when upper(rtrim(ltrim([CAL_NOM_JOUR])))='DIMANCHE' then convert(varchar(10),[CAL_DATE_JOUR],120) else '' end) as Dimanche
+    from (select [CAL_NOM_JOUR],[CAL_DATE_JOUR], DATEPART(ISO_WEEK, [CAL_DATE_JOUR]) as decal,row_id=row_number() over(partition by [CAL_NOM_JOUR] order by [CAL_DATE_JOUR]) from [T_CAL] where CAL_EVT_ID =:eventId and CAL_DATE_JOUR >= CAST(GETDATE() as DATE)  ) as t
+    group by decal
+  </sql-query>
+
+  <sql-query name="GetJoursTournoisByEvtAndAcces">
+    select
+    T_CAL.CAL_JOUR as ID,CAL_DATE_JOUR as DateJour,CAL_EVT_ID as EvenementID,cast(CAL_ESTTOURNOI as BIT) as EstTournoi,cast(CAL_ESTACCES as BIT) as EstAcces,
+    cast(CAL_ESTRESTO as BIT) as EstRestau,cast(CAL_ESTTRANSPORT as BIT) as EstTransport,cast(CAL_EST_INVITATION as BIT) as EstInvitation
+    from [T_CAL]
+    inner join [TFR_DEMANDE_LAISSEZ_PASSER_JOUR] on TFR_DEMANDE_LAISSEZ_PASSER_JOUR.CAL_JOUR = T_CAL.CAL_JOUR and TFR_DEMANDE_LAISSEZ_PASSER_JOUR.DLPJ_ACCES = 1
+    where (T_CAL.CAL_EVT_ID =:eventId  and TFR_DEMANDE_LAISSEZ_PASSER_JOUR.DLP_ID =:dlpId and T_CAL.CAL_ESTACCES = 1);
+  </sql-query>
+
+  <sql-query name="GetListJoursBetweenNumJournee">
+    <![CDATA[
+      SELECT CAL_JOUR as ID, CAL_DATE_JOUR as DateJour, CAL_NUM_JOURNEE as NumJournee FROM T_CAL WHERE CAL_NUM_JOURNEE >= :numJourneeDebut AND CAL_NUM_JOURNEE <= :numJourneeFin AND CAL_EVT_ID = :eventId
+    ]]>
+    </sql-query>
+</hibernate-mapping>

@@ -1,0 +1,1 @@
+﻿<%@ Application CodeBehind="Global.asax.cs" Inherits="VOR.Front.Web.Global" Language="C#" %>

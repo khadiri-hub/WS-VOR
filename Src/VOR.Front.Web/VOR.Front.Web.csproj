@@ -1,0 +1,880 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{98AD5B1A-2323-4BD4-B9AF-C8D6DB4EB569}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VOR.Front.Web</RootNamespace>
+    <AssemblyName>VOR.Front.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <IISExpressSSLPort>44363</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PublishDatabases>true</PublishDatabases>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AjaxControlToolkit">
+      <HintPath>..\Lib\AjaxControlToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Core, Version=3.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\Castle\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor">
+      <HintPath>..\Lib\Castle\Castle.Windsor.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp">
+      <HintPath>..\Lib\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="jQueryDatePicker">
+      <HintPath>..\Lib\jQueryDatePicker.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Newtonsoft.Json.6.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Linq.Dynamic">
+      <HintPath>..\Lib\System.Linq.Dynamic.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="Telerik.Reporting, Version=10.0.16.204, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\Telerik\Reporting Q3 2015\Telerik.Reporting.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.ReportViewer.WebForms, Version=10.0.16.204, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\Telerik\Reporting Q3 2015\Telerik.ReportViewer.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Web.Design">
+      <HintPath>..\Lib\Telerik\UI for ASP.NET AJAX Q1 2016\Bin40\Telerik.Web.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Web.UI">
+      <HintPath>..\Lib\Telerik\UI for ASP.NET AJAX Q1 2016\Bin40\Telerik.Web.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Web.UI.Skins">
+      <HintPath>..\Lib\Telerik\UI for ASP.NET AJAX Q1 2016\Bin40\Telerik.Web.UI.Skins.dll</HintPath>
+    </Reference>
+    <Reference Include="VOR.Utils">
+      <HintPath>..\VOR.Utils\bin\Debug\VOR.Utils.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="css\font-awesome\css\font-awesome.min.css" />
+    <Content Include="css\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="css\StyleFrontRG.css" />
+    <Content Include="css\StyleCommun.css" />
+    <Content Include="css\StyleFrontBercy.css" />
+    <Content Include="css\ProgressBar-JQuery\ui.all.css" />
+    <Content Include="css\ProgressBar-JQuery\ui.base.css" />
+    <Content Include="css\ProgressBar-JQuery\ui.core.css" />
+    <Content Include="css\ProgressBar-JQuery\ui.progressbar.css" />
+    <Content Include="css\ProgressBar-JQuery\ui.theme.css" />
+    <Content Include="css\jquery-ui-1.8.16.custom.css" />
+    <Content Include="css\StyleBack.css" />
+    <Content Include="css\StyleFrontRG2014.css" />
+    <Content Include="css\StylePlanPupitres.css" />
+    <Content Include="Images\btn-camera.png" />
+    <Content Include="Images\headerEmail.png" />
+    <Content Include="Images\imagesBack\bgMakkah.jpg" />
+    <Content Include="Images\imagesBack\bigLogo.png" />
+    <Content Include="Images\imagesBack\cross.png" />
+    <Content Include="Images\imagesBack\exclamationMark.png" />
+    <Content Include="Images\imagesBack\favicon.ico" />
+    <Content Include="Images\imagesBack\faviconTako.ico" />
+    <Content Include="Images\imagesBack\Icones\Icones\faviconBercy.png" />
+    <Content Include="Images\imagesBack\logoLogin.png" />
+    <Content Include="Images\imagesBack\logoLoginTako.png" />
+    <Content Include="Images\imagesBack\next.png" />
+    <Content Include="Images\imagesBack\Ok.png" />
+    <Content Include="Images\imagesBack\picto3stars.PNG" />
+    <Content Include="Images\imagesBack\picto4stars.png" />
+    <Content Include="Images\imagesBack\picto5stars.PNG" />
+    <Content Include="Images\imagesBack\pictoAdd.png" />
+    <Content Include="Images\imagesBack\pictoAddPelerin.png" />
+    <Content Include="Images\imagesBack\pictoBadge.png" />
+    <Content Include="Images\imagesBack\pictoCheque.png" />
+    <Content Include="Images\imagesBack\pictoDisconnect.png" />
+    <Content Include="Images\imagesBack\pictoEdit.png" />
+    <Content Include="Images\imagesBack\pictoEvenement.png" />
+    <Content Include="Images\imagesBack\pictoExport.png" />
+    <Content Include="Images\imagesBack\pictoFilter.png" />
+    <Content Include="Images\imagesBack\pictoFonctionalites.png" />
+    <Content Include="Images\imagesBack\pictoMiniBadge.png" />
+    <Content Include="Images\imagesBack\pictoMiniCheque.png" />
+    <Content Include="Images\imagesBack\pictoPelerin.png" />
+    <Content Include="Images\imagesBack\pictoPopulations.png" />
+    <Content Include="Images\imagesBack\pictoProfil.png" />
+    <Content Include="Images\imagesBack\pictoRestaurant.png" />
+    <Content Include="Images\imagesBack\pictoSave.png" />
+    <Content Include="Images\imagesBack\pictoSearch.png" />
+    <Content Include="Images\imagesBack\pictoTrash.png" />
+    <Content Include="Images\imagesBack\pictoUpdate.png" />
+    <Content Include="Images\imagesBack\previous.png" />
+    <Content Include="Images\imagesBack\room.png" />
+    <Content Include="Images\imagesBack\visa.png" />
+    <Content Include="Images\imagesBack\zoom.png" />
+    <Content Include="Images\imagesBercy\bg-btn-hover.png" />
+    <Content Include="Images\imagesBercy\bg-btn.png" />
+    <Content Include="Images\imagesBercy\bg-container.jpg" />
+    <Content Include="Images\imagesBercy\bg-input.jpg" />
+    <Content Include="Images\imagesBercy\bg-menu-active.png" />
+    <Content Include="Images\imagesBercy\bg-menu.png" />
+    <Content Include="Images\imagesBercy\bg.jpg" />
+    <Content Include="Images\imagesBercy\bg_h2.png" />
+    <Content Include="Images\imagesBercy\bottom-shadow.png" />
+    <Content Include="Images\imagesBercy\btn-account.png" />
+    <Content Include="Images\imagesBercy\div-separator.png" />
+    <Content Include="Images\imagesBercy\exit-separator.png" />
+    <Content Include="Images\imagesBercy\faviconBercy.png" />
+    <Content Include="Images\imagesBercy\fileUpload.png" />
+    <Content Include="Images\imagesBercy\fileUploadHover.png" />
+    <Content Include="Images\imagesBercy\logo-fft.png" />
+    <Content Include="Images\imagesBercy\Logo.png" />
+    <Content Include="Images\imagesBercy\menu-separator.png" />
+    <Content Include="Images\imagesBercy\separator1.png" />
+    <Content Include="Images\imagesBercy\shadow-separetor.png" />
+    <Content Include="Images\imagesCommunes\change.png" />
+    <Content Include="Images\imagesCommunes\delete.png" />
+    <Content Include="Images\imagesCommunes\fr-dis.png" />
+    <Content Include="Images\imagesCommunes\fr.png" />
+    <Content Include="Images\imagesCommunes\group.png" />
+    <Content Include="Images\imagesCommunes\i-file.png" />
+    <Content Include="Images\imagesCommunes\i-new-win.png" />
+    <Content Include="Images\imagesCommunes\i-person.png" />
+    <Content Include="Images\imagesCommunes\icon-download-pdf.png" />
+    <Content Include="Images\imagesCommunes\icons.png" />
+    <Content Include="Images\imagesCommunes\logo.png" />
+    <Content Include="Images\imagesCommunes\logoFFT.png" />
+    <Content Include="Images\imagesCommunes\logo_fft.png" />
+    <Content Include="Images\imagesCommunes\loupe.png" />
+    <Content Include="Images\imagesCommunes\raz.png" />
+    <Content Include="Images\imagesCommunes\RightArrow.png" />
+    <Content Include="Images\imagesCommunes\RightArrow2.png" />
+    <Content Include="Images\imagesCommunes\trash.png" />
+    <Content Include="Images\imagesCommunes\uk-dis.png" />
+    <Content Include="Images\imagesCommunes\uk.png" />
+    <Content Include="Images\imagesDavis\bg-btn-hover.png" />
+    <Content Include="Images\imagesDavis\bg-btn.png" />
+    <Content Include="Images\imagesDavis\bg-container.jpg" />
+    <Content Include="Images\imagesDavis\bg-input.jpg" />
+    <Content Include="Images\imagesDavis\bg-menu-active.png" />
+    <Content Include="Images\imagesDavis\bg-menu.png" />
+    <Content Include="Images\imagesDavis\bg.jpg" />
+    <Content Include="Images\imagesDavis\bottom-shadow.png" />
+    <Content Include="Images\imagesDavis\brouillon.png" />
+    <Content Include="Images\imagesDavis\btn-account.png" />
+    <Content Include="Images\imagesDavis\change.png" />
+    <Content Include="Images\imagesDavis\delete.png" />
+    <Content Include="Images\imagesDavis\div-separator.png" />
+    <Content Include="Images\imagesDavis\envoyee.png" />
+    <Content Include="Images\imagesDavis\exit-separator.png" />
+    <Content Include="Images\imagesDavis\exit.png" />
+    <Content Include="Images\imagesDavis\favicon.ico" />
+    <Content Include="Images\imagesDavis\fileUpload.png" />
+    <Content Include="Images\imagesDavis\fileUploadHover.png" />
+    <Content Include="Images\imagesDavis\imprimee.png" />
+    <Content Include="Images\imagesDavis\logo-fft.png" />
+    <Content Include="Images\imagesDavis\Logo.png" />
+    <Content Include="Images\imagesDavis\menu-separator.png" />
+    <Content Include="Images\imagesDavis\PreFrontLinkBg.png" />
+    <Content Include="Images\imagesDavis\PreFrontLinkBgHOver.png" />
+    <Content Include="Images\imagesDavis\separator1.png" />
+    <Content Include="Images\imagesDavis\shadow-separetor.png" />
+    <Content Include="Images\imagesDavis\traitee.png" />
+    <Content Include="Images\imagesDavis\WhiteLogo.png" />
+    <Content Include="Images\imagesRG\brouillon.png" />
+    <Content Include="Images\imagesCommunes\btnDisconnect.png" />
+    <Content Include="Images\imagesRG\btn-camera.png" />
+    <Content Include="Images\imagesRG\change.png" />
+    <Content Include="Images\imagesRG\delete.png" />
+    <Content Include="Images\imagesCommunes\exit.png" />
+    <Content Include="Images\imagesRG\envoyee.png" />
+    <Content Include="Images\imagesRG\bg-btn-hover.png" />
+    <Content Include="Images\imagesRG\bg-btn.png" />
+    <Content Include="Images\imagesRG\bg-container.jpg" />
+    <Content Include="Images\imagesRG\bg-input.jpg" />
+    <Content Include="Images\imagesRG\bg-menu-active.png" />
+    <Content Include="Images\imagesRG\bg-menu.png" />
+    <Content Include="Images\imagesRG\bg.jpg" />
+    <Content Include="Images\imagesRG\bottom-shadow.png" />
+    <Content Include="Images\imagesRG\btn-account.png" />
+    <Content Include="Images\imagesRG\div-separator.png" />
+    <Content Include="Images\imagesRG\exit-separator.png" />
+    <Content Include="Images\imagesRG\exit.png" />
+    <Content Include="Images\imagesRG\favicon.ico" />
+    <Content Include="Images\imagesRG\faviconRG.ico" />
+    <Content Include="Images\imagesRG\fileUpload.png" />
+    <Content Include="Images\imagesRG\fileUploadHover.png" />
+    <Content Include="Images\imagesRG\logo-fft.png" />
+    <Content Include="Images\imagesRG\Logo.png" />
+    <Content Include="Images\imagesRG\menu-separator.png" />
+    <Content Include="Images\imagesRG\pupitrebas.png" />
+    <Content Include="Images\imagesRG\pupitredroite.png" />
+    <Content Include="Images\imagesRG\pupitregauche.png" />
+    <Content Include="Images\imagesRG\pupitrehaut.png" />
+    <Content Include="Images\imagesRG\separator1.png" />
+    <Content Include="Images\imagesRG\shadow-separetor.png" />
+    <Content Include="Images\imagesRG\imprimee.png" />
+    <Content Include="Images\imagesRG\PreFrontLinkBg.png" />
+    <Content Include="Images\imagesRG\PreFrontLinkBgHOver.png" />
+    <Content Include="Images\imagesRG\traitee.png" />
+    <Content Include="Images\imagesRG\WhiteLogo.png" />
+    <Content Include="Images\imagesBack\acces.png" />
+    <Content Include="Images\imagesBack\add.png" />
+    <Content Include="Images\imagesBack\aValider.png" />
+    <Content Include="Images\imagesBack\banner.png" />
+    <Content Include="Images\imagesBack\bg.png" />
+    <Content Include="Images\imagesBack\bgBody.jpg" />
+    <Content Include="Images\imagesBack\bgBtn.jpg" />
+    <Content Include="Images\imagesBack\bgBtnHOver.jpg" />
+    <Content Include="Images\imagesBack\bgDeconnexion.png" />
+    <Content Include="Images\imagesBack\bgMenu.png" />
+    <Content Include="Images\imagesBack\bgTitle.png" />
+    <Content Include="Images\imagesBack\browseBG.png" />
+    <Content Include="Images\imagesBack\browseBG-Hover.png" />
+    <Content Include="Images\imagesBack\btnAddNewGroup.png" />
+    <Content Include="Images\imagesBack\btnDisconnect.png" />
+    <Content Include="Images\imagesCommunes\btnEn.png" />
+    <Content Include="Images\imagesCommunes\btnFr.png" />
+    <Content Include="Images\imagesBack\calendar_edit.png" />
+    <Content Include="Images\imagesBack\delete.png" />
+    <Content Include="Images\imagesBack\fileUpload.png" />
+    <Content Include="Images\imagesBack\Flag1616-EN.png" />
+    <Content Include="Images\imagesBack\Flag1616-FR.png" />
+    <Content Include="Images\imagesBack\headerEmail.png" />
+    <Content Include="Images\Icones\EtatDemandeNameConflit.png" />
+    <Content Include="Images\Icones\EtatDemandePerIDMissed.png" />
+    <Content Include="Images\Icones\EtatDemandePrinted.png" />
+    <Content Include="Images\Icones\excel.png" />
+    <Content Include="Images\Icones\iconeModifier.png" />
+    <Content Include="Images\Icones\pdf.png" />
+    <Content Include="Images\imagesBack\LinkPreFront.png" />
+    <Content Include="Images\imagesCommunes\loading.gif" />
+    <Content Include="Images\imagesBack\PreFrontLinkBg.png" />
+    <Content Include="Images\imagesBack\PreFrontLinkBgHOver.png" />
+    <Content Include="Images\imagesBack\profile_edit.png" />
+    <Content Include="Images\imagesCommunes\status_4.png" />
+    <Content Include="Images\imagesCommunes\status_5.png" />
+    <Content Include="Images\imagesCommunes\status_6.png" />
+    <Content Include="Images\imagesCommunes\status_7.png" />
+    <Content Include="Images\imagesBack\tabBg.png" />
+    <Content Include="Images\imagesCommunes\templateLaissezPasser.bmp" />
+    <Content Include="Images\imagesCommunes\alien.png" />
+    <Content Include="Images\imagesBack\bg.jpg" />
+    <Content Include="Images\imagesBack\bgBanner.png" />
+    <Content Include="Images\imagesBack\bgBody.png" />
+    <Content Include="Images\imagesBack\bgFooter.png" />
+    <Content Include="Images\imagesBack\bgPicture.png" />
+    <Content Include="Images\imagesBack\brouillon.png" />
+    <Content Include="Images\imagesBack\btnBg.png" />
+    <Content Include="Images\imagesBack\court.png" />
+    <Content Include="Images\courtRG.jpg" />
+    <Content Include="Images\imagesCommunes\del.png" />
+    <Content Include="Images\imagesBack\envoyee.png" />
+    <Content Include="Images\imagesBack\fichepersonneOmbre.png" />
+    <Content Include="Images\imagesBack\groupes.png" />
+    <Content Include="Images\Icones\icon-edit.png" />
+    <Content Include="Images\imagesBack\imprimee.png" />
+    <Content Include="Images\imagesBack\intervenants.png" />
+    <Content Include="Images\imagesCommunes\ko.png" />
+    <Content Include="Images\imagesBack\logo.png" />
+    <Content Include="Images\imagesBack\mail.png" />
+    <Content Include="Images\imagesBack\menuBackSide.png" />
+    <Content Include="Images\imagesCommunes\ok.png" />
+    <Content Include="Images\imagesBack\ombre.png" />
+    <Content Include="Images\imagesBack\picture.png" />
+    <Content Include="Images\imagesBack\puce.png" />
+    <Content Include="Images\imagesBack\SecondMenuBg.png" />
+    <Content Include="Images\imagesBack\SecondMenuLimitBottom.png" />
+    <Content Include="Images\imagesBack\SecondMenuLimitTop.png" />
+    <Content Include="Images\imagesCommunes\status_1.png" />
+    <Content Include="Images\imagesCommunes\status_2.png" />
+    <Content Include="Images\imagesCommunes\status_3.png" />
+    <Content Include="Images\imagesBack\tabActiv.png" />
+    <Content Include="Images\imagesBack\tabInactiv.png" />
+    <Content Include="Images\imagesBack\traitee.png" />
+    <Content Include="Images\imagesBack\WhiteLogo.png" />
+    <Content Include="Images\loader.gif" />
+    <Content Include="Images\zone1.png" />
+    <Content Include="Images\zone2.png" />
+    <Content Include="Images\zone3.png" />
+    <Content Include="Images\zone4.png" />
+    <Content Include="Images\zone5.png" />
+    <Content Include="Images\zone6.png" />
+    <Content Include="Images\zone7.png" />
+    <Content Include="Images\zone8.png" />
+    <Content Include="Login.aspx" />
+    <Content Include="Logs\PlaceHolder.txt" />
+    <Content Include="OperationsManagament.aspx" />
+    <Content Include="Pages\Hebergement\HebergementSaison.aspx" />
+    <Content Include="Pages\Hebergement\VueGlobal.aspx" />
+    <Content Include="Pages\Hebergement\Hebergement.aspx" />
+    <Content Include="Pages\Evenement\Chambres.aspx" />
+    <Content Include="Pages\Evenement\Edit\GestionCompagnie.aspx" />
+    <Content Include="Pages\Evenement\Edit\GestionChambre.aspx" />
+    <Content Include="Pages\Evenement\Edit\GestionPnr.aspx" />
+    <Content Include="Pages\Evenement\Edit\GestionTypeChambre.aspx" />
+    <Content Include="Pages\Evenement\Edit\GestionVol.aspx" />
+    <Content Include="Pages\Evenement\Edit\GestionHotel.aspx" />
+    <Content Include="Pages\Evenement\Edit\GestionVille.aspx" />
+    <Content Include="Pages\Evenement\Edit\GestionProgramme.aspx" />
+    <Content Include="Pages\Evenement\Pnr.aspx" />
+    <Content Include="Pages\Evenement\TypeChambres.aspx" />
+    <Content Include="Pages\Evenement\Hotels.aspx" />
+    <Content Include="Pages\Evenement\Compagnies.aspx" />
+    <Content Include="Pages\Evenement\Vols.aspx" />
+    <Content Include="Pages\Evenement\Villes.aspx" />
+    <Content Include="Pages\Evenement\Programmes.aspx" />
+    <Content Include="Pages\Parametrage\Edit\GestionUtilisateur.aspx" />
+    <Content Include="Pages\Parametrage\Utilisateurs.aspx" />
+    <Content Include="Pages\Parametrage\Agences.aspx" />
+    <Content Include="Pages\Parametrage\Edit\GestionAgence.aspx" />
+    <Content Include="Pages\Collaborateur\Collaborateurs.aspx" />
+    <Content Include="Pages\Collaborateur\Edit\GestionCollaborateur.aspx" />
+    <Content Include="Pages\Evenement\Edit\GestionEvenement.aspx" />
+    <Content Include="Pages\Evenement\Evenements.aspx" />
+    <Content Include="Pages\Pelerin\Edit\GestionVisa.aspx" />
+    <Content Include="Pages\Pelerin\Edit\GestionRecu.aspx" />
+    <Content Include="Pages\Pelerin\Edit\GestionPelerin.aspx" />
+    <Content Include="Pages\Pelerin\IDPhotoMaker.aspx" />
+    <Content Include="Pages\Pelerin\Pelerins.aspx" />
+    <Content Include="Plugins\IDPhotoMaker\css\style.css" />
+    <Content Include="Plugins\IDPhotoMaker\IDPhotoMaker.js" />
+    <Content Include="Plugins\IDPhotoMaker\images\icons.png" />
+    <Content Include="Plugins\IDPhotoMaker\lib\fabric.min.js" />
+    <Content Include="Plugins\IDPhotoMaker\lib\jquery.tmpl.min.js" />
+    <Content Include="Plugins\IDPhotoMaker\lib\webcam.min.js" />
+    <Content Include="Plugins\IDPhotoMaker\lib\webcam.swf" />
+    <Content Include="Plugins\IDPhotoMaker\resources\strings.en.js" />
+    <Content Include="Plugins\IDPhotoMaker\resources\strings.fr.js" />
+    <Content Include="Plugins\IDPhotoMaker\template.html" />
+    <Content Include="Plugins\InternationalTelephoneInput\css\intlTelInput.css" />
+    <Content Include="Plugins\InternationalTelephoneInput\img\flags%402x.png" />
+    <Content Include="Plugins\InternationalTelephoneInput\img\flags.png" />
+    <Content Include="Plugins\InternationalTelephoneInput\js\intlTelInput.min.js" />
+    <Content Include="Plugins\InternationalTelephoneInput\js\utils.js" />
+    <Content Include="Scripts\choixzone2.js" />
+    <Content Include="Scripts\commun.js" />
+    <Content Include="Scripts\custom.js" />
+    <Content Include="Scripts\DragAndDrop\redips-drag-min.js" />
+    <Content Include="Scripts\DragAndDrop\script.js" />
+    <Content Include="Scripts\DragAndDrop\style.css" />
+    <Content Include="Scripts\jquery-1.4.1.js" />
+    <Content Include="Scripts\jquery-1.7.1.min.js" />
+    <Content Include="Scripts\jquery-ui-1.8.16.custom.min.js" />
+    <Content Include="Scripts\jquery.counter.js" />
+    <Content Include="Scripts\jquery.maphilight.min.js" />
+    <Content Include="Scripts\jquery.msgBox.js" />
+    <Content Include="Scripts\jquery.ui.potato.menu.js" />
+    <Content Include="Scripts\listFilterAndToggle.js" />
+    <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\PIE.htc" />
+    <Content Include="Scripts\ProgressBar-JQuery\ui.core.js" />
+    <Content Include="Scripts\ProgressBar-JQuery\ui.progressbar.js" />
+    <Content Include="Scripts\Silverlight.js" />
+    <Content Include="PopIn.Master" />
+    <Content Include="css\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="css\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="css\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="css\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="css\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="FrontPreHome.Master" />
+    <Content Include="Handler\BadgePdfHandler.ashx" />
+    <None Include="Images\MapArea\courtRG.jpg.map" />
+    <None Include="Images\MapArea\zone1.png.map" />
+    <None Include="Images\MapArea\zone2.png.map" />
+    <None Include="Images\MapArea\zone3.png.map" />
+    <None Include="Images\MapArea\zone4.png.map" />
+    <None Include="Images\MapArea\zone5.png.map" />
+    <None Include="Images\MapArea\zone6.png.map" />
+    <None Include="Images\MapArea\zone7.png.map" />
+    <None Include="Images\MapArea\zone8.png.map" />
+    <None Include="Properties\PublishProfiles\PRESTA.pubxml" />
+    <None Include="Properties\PublishProfiles\PrestaPublish.pubxml" />
+    <None Include="Properties\PublishProfiles\VOYAGE OR.pubxml" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Global.asax" />
+    <Content Include="UserControls\Evenement\HotelsUC.ascx" />
+    <Content Include="UserControls\Menu\BO\MenuLeftUC.ascx" />
+    <Content Include="UserControls\Menu\BO\MenuTopUC.ascx" />
+    <Content Include="UserControls\Menu\MenuBienvenuTopBackUC.ascx" />
+    <Content Include="UserControls\Pelerin\CommercialUC.ascx" />
+    <Content Include="UserControls\Pelerin\AccompagnantsUC.ascx" />
+    <Content Include="UserControls\Pelerin\IDPhotoMakerUC.ascx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Base\BaseMasterPage\BaseMasterPage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Base\BasePage\BasePage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Base\BaseUserControl\BaseUserControl.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Base\CustomControls\HfUniqueID.cs" />
+    <Compile Include="Base\CustomControls\HtmlRadioButtonUniqueID.cs" />
+    <Compile Include="Base\CustomControls\LabelUniqueID.cs" />
+    <Compile Include="Base\CustomControls\ListBoxUniqueID.cs" />
+    <Compile Include="Base\CustomControls\RadioButtonUniqueID.cs" />
+    <Compile Include="Commun\MyCustomFilteringColumn.cs" />
+    <Compile Include="FrontPreHome.Master.cs">
+      <DependentUpon>FrontPreHome.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FrontPreHome.Master.designer.cs">
+      <DependentUpon>FrontPreHome.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Handler\BadgePdfHandler.ashx.cs">
+      <DependentUpon>BadgePdfHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\Cookie.cs" />
+    <Compile Include="Helpers\QueryString\QueryStringElement.cs" />
+    <Compile Include="Helpers\QueryString\QueryStringManager.cs" />
+    <Compile Include="Helpers\QueryString\QueryStringParametersCollection.cs" />
+    <Compile Include="Helpers\SessionHelper.cs" />
+    <Compile Include="Helpers\WebUtil.cs" />
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OperationsManagament.aspx.cs">
+      <DependentUpon>OperationsManagament.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OperationsManagament.aspx.designer.cs">
+      <DependentUpon>OperationsManagament.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Hebergement\HebergementSaison.aspx.cs">
+      <DependentUpon>HebergementSaison.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Hebergement\HebergementSaison.aspx.designer.cs">
+      <DependentUpon>HebergementSaison.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Hebergement\VueGlobal.aspx.cs">
+      <DependentUpon>VueGlobal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Hebergement\VueGlobal.aspx.designer.cs">
+      <DependentUpon>VueGlobal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Hebergement\Hebergement.aspx.cs">
+      <DependentUpon>Hebergement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Hebergement\Hebergement.aspx.designer.cs">
+      <DependentUpon>Hebergement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Evenement\Chambres.aspx.cs">
+      <DependentUpon>Chambres.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Evenement\Chambres.aspx.designer.cs">
+      <DependentUpon>Chambres.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Evenement\Edit\GestionCompagnie.aspx.cs">
+      <DependentUpon>GestionCompagnie.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Evenement\Edit\GestionCompagnie.aspx.designer.cs">
+      <DependentUpon>GestionCompagnie.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Evenement\Edit\GestionChambre.aspx.cs">
+      <DependentUpon>GestionChambre.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Evenement\Edit\GestionChambre.aspx.designer.cs">
+      <DependentUpon>GestionChambre.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Evenement\Edit\GestionPnr.aspx.cs">
+      <DependentUpon>GestionPnr.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Evenement\Edit\GestionPnr.aspx.designer.cs">
+      <DependentUpon>GestionPnr.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Evenement\Edit\GestionTypeChambre.aspx.cs">
+      <DependentUpon>GestionTypeChambre.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Evenement\Edit\GestionTypeChambre.aspx.designer.cs">
+      <DependentUpon>GestionTypeChambre.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Evenement\Edit\GestionVol.aspx.cs">
+      <DependentUpon>GestionVol.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Evenement\Edit\GestionVol.aspx.designer.cs">
+      <DependentUpon>GestionVol.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Evenement\Edit\GestionHotel.aspx.cs">
+      <DependentUpon>GestionHotel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Evenement\Edit\GestionHotel.aspx.designer.cs">
+      <DependentUpon>GestionHotel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Evenement\Edit\GestionVille.aspx.cs">
+      <DependentUpon>GestionVille.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Evenement\Edit\GestionVille.aspx.designer.cs">
+      <DependentUpon>GestionVille.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Evenement\Edit\GestionProgramme.aspx.cs">
+      <DependentUpon>GestionProgramme.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Evenement\Edit\GestionProgramme.aspx.designer.cs">
+      <DependentUpon>GestionProgramme.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Evenement\Pnr.aspx.cs">
+      <DependentUpon>Pnr.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Evenement\Pnr.aspx.designer.cs">
+      <DependentUpon>Pnr.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Evenement\TypeChambres.aspx.cs">
+      <DependentUpon>TypeChambres.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Evenement\TypeChambres.aspx.designer.cs">
+      <DependentUpon>TypeChambres.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Evenement\Hotels.aspx.cs">
+      <DependentUpon>Hotels.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Evenement\Hotels.aspx.designer.cs">
+      <DependentUpon>Hotels.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Evenement\Compagnies.aspx.cs">
+      <DependentUpon>Compagnies.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Evenement\Compagnies.aspx.designer.cs">
+      <DependentUpon>Compagnies.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Evenement\Vols.aspx.cs">
+      <DependentUpon>Vols.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Evenement\Vols.aspx.designer.cs">
+      <DependentUpon>Vols.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Evenement\Villes.aspx.cs">
+      <DependentUpon>Villes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Evenement\Villes.aspx.designer.cs">
+      <DependentUpon>Villes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Evenement\Programmes.aspx.cs">
+      <DependentUpon>Programmes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Evenement\Programmes.aspx.designer.cs">
+      <DependentUpon>Programmes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Parametrage\Edit\GestionUtilisateur.aspx.cs">
+      <DependentUpon>GestionUtilisateur.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Parametrage\Edit\GestionUtilisateur.aspx.designer.cs">
+      <DependentUpon>GestionUtilisateur.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Parametrage\Utilisateurs.aspx.cs">
+      <DependentUpon>Utilisateurs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Parametrage\Utilisateurs.aspx.designer.cs">
+      <DependentUpon>Utilisateurs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Parametrage\Agences.aspx.cs">
+      <DependentUpon>Agences.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Parametrage\Agences.aspx.designer.cs">
+      <DependentUpon>Agences.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Parametrage\Edit\GestionAgence.aspx.cs">
+      <DependentUpon>GestionAgence.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Parametrage\Edit\GestionAgence.aspx.designer.cs">
+      <DependentUpon>GestionAgence.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Collaborateur\Collaborateurs.aspx.cs">
+      <DependentUpon>Collaborateurs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Collaborateur\Collaborateurs.aspx.designer.cs">
+      <DependentUpon>Collaborateurs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Collaborateur\Edit\GestionCollaborateur.aspx.cs">
+      <DependentUpon>GestionCollaborateur.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Collaborateur\Edit\GestionCollaborateur.aspx.designer.cs">
+      <DependentUpon>GestionCollaborateur.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Evenement\Edit\GestionEvenement.aspx.cs">
+      <DependentUpon>GestionEvenement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Evenement\Edit\GestionEvenement.aspx.designer.cs">
+      <DependentUpon>GestionEvenement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Evenement\Evenements.aspx.cs">
+      <DependentUpon>Evenements.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Evenement\Evenements.aspx.designer.cs">
+      <DependentUpon>Evenements.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Pelerin\Edit\GestionVisa.aspx.cs">
+      <DependentUpon>GestionVisa.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Pelerin\Edit\GestionVisa.aspx.designer.cs">
+      <DependentUpon>GestionVisa.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Pelerin\Edit\GestionRecu.aspx.cs">
+      <DependentUpon>GestionRecu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Pelerin\Edit\GestionRecu.aspx.designer.cs">
+      <DependentUpon>GestionRecu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Pelerin\Edit\GestionPelerin.aspx.cs">
+      <DependentUpon>GestionPelerin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Pelerin\Edit\GestionPelerin.aspx.designer.cs">
+      <DependentUpon>GestionPelerin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Pelerin\IDPhotoMaker.aspx.cs">
+      <DependentUpon>IDPhotoMaker.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Pelerin\IDPhotoMaker.aspx.designer.cs">
+      <DependentUpon>IDPhotoMaker.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Pelerin\Pelerins.aspx.cs">
+      <DependentUpon>Pelerins.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Pelerin\Pelerins.aspx.designer.cs">
+      <DependentUpon>Pelerins.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PopIn.Master.cs">
+      <DependentUpon>PopIn.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PopIn.Master.designer.cs">
+      <DependentUpon>PopIn.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Evenement\HotelsUC.ascx.cs">
+      <DependentUpon>HotelsUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\Evenement\HotelsUC.ascx.designer.cs">
+      <DependentUpon>HotelsUC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Menu\BO\MenuLeftUC.ascx.cs">
+      <DependentUpon>MenuLeftUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\Menu\BO\MenuLeftUC.ascx.designer.cs">
+      <DependentUpon>MenuLeftUC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Menu\BO\MenuTopUC.ascx.cs">
+      <DependentUpon>MenuTopUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\Menu\BO\MenuTopUC.ascx.designer.cs">
+      <DependentUpon>MenuTopUC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Menu\MenuBienvenuTopBackUC.ascx.cs">
+      <DependentUpon>MenuBienvenuTopBackUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\Menu\MenuBienvenuTopBackUC.ascx.designer.cs">
+      <DependentUpon>MenuBienvenuTopBackUC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Pelerin\CommercialUC.ascx.cs">
+      <DependentUpon>CommercialUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\Pelerin\CommercialUC.ascx.designer.cs">
+      <DependentUpon>CommercialUC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Pelerin\AccompagnantsUC.ascx.cs">
+      <DependentUpon>AccompagnantsUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\Pelerin\AccompagnantsUC.ascx.designer.cs">
+      <DependentUpon>AccompagnantsUC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Pelerin\IDPhotoMakerUC.ascx.cs">
+      <DependentUpon>IDPhotoMakerUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\Pelerin\IDPhotoMakerUC.ascx.designer.cs">
+      <DependentUpon>IDPhotoMakerUC.ascx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Components\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Site.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VOR.Core\VOR.Core.Model\VOR.Core.Model.csproj">
+      <Project>{3ea4e9a8-8717-4ef5-9d7c-a167491a9d02}</Project>
+      <Name>VOR.Core.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VOR.Core\VOR.Core\VOR.Core.csproj">
+      <Project>{4199e710-17df-4592-90b7-79cf1b8a91d0}</Project>
+      <Name>VOR.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>False</AutoAssignPort>
+          <DevelopmentServerPort>57758</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:57759/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>http://localhost/Presta</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <UserProperties UseAjaxifiedTemplates="False" UseJQuerySupport="False" />
+    </VisualStudio>
+  </ProjectExtensions>
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

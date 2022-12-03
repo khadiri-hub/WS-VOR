@@ -1,0 +1,196 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="SitePelerin.Master.cs" Inherits="VOR.Front.Web.SiteMaster" %>
+
+<%@ Register TagPrefix="UC" Namespace="VOR.Front.Web.Base.CustomControls" Assembly="VOR.Front.Web" %>
+<%@ Register TagPrefix="telerik" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI" %>
+<%@ Register Src="~/UserControls/Menu/BO/MenuTopUC.ascx" TagName="MenuTopUC" TagPrefix="uc" %>
+<%@ Register Src="~/UserControls/Menu/BO/MenuLeftUC.ascx" TagName="MenuLeftUC" TagPrefix="uc" %>
+<%@ Register Src="UserControls/Menu/MenuBienvenuTopBackUC.ascx" TagName="MenuBienvenuTopBackUC"
+    TagPrefix="uc3" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head id="head" runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title runat="server" id="_pageTitle" title="Prestataire Gestion - BackOffice"></title>
+    <link href="~/css/jquery-ui-1.8.16.custom.css" runat="server" rel="stylesheet" type="text/css" />
+    <link id="LinkStyleCommun" href="~/css/StyleCommun.css" runat="server" rel="stylesheet" type="text/css" />
+    <link href="~/css/StyleBack.css" rel="stylesheet" runat="server" type="text/css" />
+    <telerik:RadCodeBlock ID="RadCodeBlockJQUERY" runat="server">
+        <script src="<%=ResolveClientUrl("~/Scripts/jquery-1.7.1.min.js")%>" type="text/javascript"></script>
+        <script src="<%=ResolveClientUrl("~/Scripts/jquery-ui-1.8.16.custom.min.js")%>" type="text/javascript"></script>
+        <script src="<%=ResolveClientUrl("~/Scripts/commun.js")%>" type="text/javascript"></script>
+        <script src="<%=ResolveClientUrl("~/Scripts/jquery.msgBox.js")%>" type="text/javascript"></script>
+    </telerik:RadCodeBlock>
+    <script type="text/javascript" language="javascript">
+
+
+        function OpenMyRadWindow(pageURL, RadWindowManagerID, RadWindowName, RadWindowTitle) {
+
+            var manager = $find(RadWindowManagerID);
+
+            if (manager != null) {
+                var window = manager.getWindowByName(RadWindowName);
+                if (window != null && typeof (RadWindowTitle) !== 'undefined') {
+                    window.set_title(RadWindowTitle);
+                }
+
+                manager.open(pageURL, RadWindowName);
+                return false;
+            }
+        }
+
+        function DisplayMsgInfo(args) {
+
+            var clienttype = document.getElementById("LBLINFO");
+            if (clienttype != null) {
+                if (args != "") {
+                    clienttype.innerHTML = args;
+                    clienttype.style.display = "block";
+
+                    // On efface message error
+                    DisplayMsgError("");
+
+                    setTimeout(function () {
+                        $('html,body').scrollTop(0);
+                    }, 100);
+                } else {
+                    clienttype.innerHTML = "";
+                    clienttype.style.display = "none";
+                }
+            }
+
+        }
+
+
+        function DisplayMsgError(args) {
+
+            var clienttype = document.getElementById("LBLERROR");
+            if (clienttype != null) {
+                if (args != "") {
+                    clienttype.innerHTML = args;
+                    clienttype.style.display = "block";
+
+                    // On efface message info
+                    DisplayMsgInfo("");
+
+                    setTimeout(function () {
+                        $('html,body').scrollTop(0);
+                    }, 100);
+
+                } else {
+                    clienttype.innerHTML = "";
+                    clienttype.style.display = "none";
+                }
+            }
+
+        }
+
+        //  utilisé pour éviter la double validation de formulaire si les validators sont corrects
+        function validatePage(control) {
+            var isValid = Page_ClientValidate();
+            control.disabled = isValid;
+        }
+
+        $(document).ready(function () {
+            $(".msgOK, .msgKO ").click(function () {
+                $(this).hide();
+            });
+        });
+
+
+
+
+    </script>
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body style="min-width: 1300px;">
+    <script type="text/javascript">
+        function openIDPhotoMaker(lang, cropWidth, cropHeight, refWin, refWinMan) {
+            var url = "<%= Page.ResolveClientUrl("~/Pages/Pelerin/IDPhotoMaker.aspx") %>?RenderMode=popin&lang={0}&cropwidth={1}&cropheight={2}&refWin={3}&refWinMan={4}".format(lang, cropWidth, cropHeight, refWin, refWinMan);
+            OpenMyRadWindow(url, "<%=this._rwmIdPhotoMaker.ClientID%>", "_rwIDPhotoMaker", null);
+        }
+
+        function getIDPhotoMakerResult(data, refWin, refWinMan) {
+            var manager = $find(refWinMan);
+
+            if (manager != null) {
+                var window = manager.getWindowByName(refWin);
+
+                if (window != null) {
+                    window.get_contentFrame().contentWindow.updatePhoto(data);
+                }
+            }
+        }
+    </script>
+    <form id="form1" runat="server">
+        <telerik:RadScriptManager ID="RadScriptManager1" runat="server">
+            <Scripts>
+                <asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.Core.js" />
+                <asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.jQuery.js" />
+                <asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.jQueryInclude.js" />
+            </Scripts>
+        </telerik:RadScriptManager>
+        <telerik:RadAjaxManager ID="RadAjaxManager1" runat="server">
+        </telerik:RadAjaxManager>
+        <div id="body">
+            <div id="content">
+                <div>
+                    <uc3:MenuBienvenuTopBackUC ID="MenuBienvenuTopBackUC1" runat="server" />
+                </div>
+                <div id="shadow">
+                    <div id="logo">
+                    </div>
+
+                    <uc:MenuTopUC ID="_menuTopUC" runat="server" />
+
+                    <div id="whiteRectangle">
+                       
+                        <%--<uc:MenuLeftUC ID="MenuLeftUC1" runat="server" />--%>
+                        <div class="ongletsContentPelerin">
+                             <asp:Label ID="_lblTitle" runat="server"></asp:Label></h1>
+                              <center>
+                        <UC:LabelUniqueID CssClass="msgOK" SpecificID="LBLINFO" ID="LBLINFO" runat="server"
+                            Text=""></UC:LabelUniqueID>
+                    </center>
+                        <center>
+                        <UC:LabelUniqueID CssClass="msgKO" SpecificID="LBLERROR" ID="LBLERROR" runat="server"
+                            Text=""></UC:LabelUniqueID>
+                    </center>
+                            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                            </asp:ContentPlaceHolder>
+                            <div class="clear"> </div>
+                        </div>
+                        <%--<div class="ongletsContentPelerin">
+                             <h1>
+                            <asp:Label ID="_lblTitle" runat="server"></asp:Label></h1>
+                        
+                      
+                            <asp:ContentPlaceHolder ID="MainContentAlternative" runat="server">
+                            </asp:ContentPlaceHolder>
+                            <div class="clear"> </div>
+                        </div>--%>
+                        <div class="clear">
+                        </div>
+                        <!--dd-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="DivAutocomplete" runat="server">
+        </div>
+        <div id="footer">
+            <img style="left: 60px; position: relative;" runat="server" src="~/Images/imagesCommunes/logo.png" width="25" height="25"/>
+            <span>Voyage Or, Lot sala aljadida nº 1148 bis hssain sala aljadida, Sal&eacute;. T&eacute;l. :
+            0537857475 / 0645232617 / 0624990203- Fax. : 0537857475</span>
+        </div>
+
+        <telerik:RadWindowManager ID="_rwmIdPhotoMaker" runat="server" Modal="true" ShowContentDuringLoad="false"
+            KeepInScreenBounds="true" IconUrl="null" EnableShadow="true" ReloadOnShow="true"
+            Behaviors="Close,Move" VisibleStatusbar="false" VisibleOnPageLoad="false">
+            <Windows>
+                <telerik:RadWindow ID="_rwIDPhotoMaker" Width="750px" Height="531px" runat="server" />
+            </Windows>
+        </telerik:RadWindowManager>
+    </form>
+</body>
+</html>

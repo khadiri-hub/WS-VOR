@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="VOR.Core.Domain" assembly="VOR.Core">
+  <class name="Recu" table="RECU">
+    <id name="ID" type="Int32">
+      <column name="ID_RECU" sql-type="int" not-null="true" unique="true" />
+      <generator class="identity" />
+    </id>
+    <many-to-one name="Pelerin">
+      <column name="ID_PELERIN" sql-type="int" not-null="true" />
+    </many-to-one>
+    <many-to-one name="UtilisateurCreation">
+      <column name="ID_UTILISATEUR_CREATION" sql-type="int" not-null="true" />
+    </many-to-one>
+    <many-to-one name="UtilisateurModification">
+      <column name="ID_UTILISATEUR_MODIFICATION" sql-type="int" not-null="false" />
+    </many-to-one>
+    <property name="Numero">
+      <column name="NUM_RECU" sql-type="nvarchar" not-null="true" />
+    </property>
+    <property name="Montant">
+      <column name="MONTANT_RECU" sql-type="int" not-null="true" />
+    </property>
+    <property name="DateCreation">
+      <column name="DATE_CREATION" sql-type="date" not-null="true" />
+    </property>
+    <property name="DateModification">
+      <column name="DATE_MODIFICATION" sql-type="date" not-null="false" />
+    </property>
+    <property name="Image" type="BinaryBlob">
+      <column name="IMG" sql-type="image" not-null="false" />
+    </property>   
+  </class>
+</hibernate-mapping>

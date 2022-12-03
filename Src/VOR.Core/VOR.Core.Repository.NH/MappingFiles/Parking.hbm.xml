@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="VOR.Core.Domain" assembly="VOR.Core">
+  <class name="Parking" table="PARK_PARKING">
+    <id name="ID" type="Int32">
+      <column name="PARK_PARKING_ID" sql-type="int" not-null="true" unique="true" />
+      <generator class="identity" />
+    </id>
+    <many-to-one name="TypeVehicule">
+      <column name="PARK_TYPE_VEHICULE_ID" sql-type="int" not-null="true" />
+    </many-to-one>
+    <many-to-one name="Type">
+      <column name="TITRE_ACCES_TYPE_ID" sql-type="int" not-null="true" />
+    </many-to-one>
+    <many-to-one name="Support">
+      <column name="TITRE_ACCES_SUPPORT_ID" sql-type="int" not-null="true" />
+    </many-to-one>
+    <property name="Nom">
+      <column name="PARK_PARKING_NOM" sql-type="nvarchar" length="50" not-null="true" />
+    </property>
+    <property name="Jauge">
+      <column name="PARK_PARKING_JAUGE" sql-type="int" not-null="true" />
+    </property>
+    <property name="JourneeDebut">
+      <column name="CAL_NUM_JOURNEE_DEBUT" sql-type="int" not-null="true" />
+    </property>
+    <property name="JourneeFin">
+      <column name="CAL_NUM_JOURNEE_FIN" sql-type="int" not-null="true" />
+    </property>
+    <property name="EvenementType">
+      <column name="EV_TYPE" sql-type="varchar" not-null="true" />
+    </property>
+    <bag name="Quotas" cascade="all-delete-orphan">
+      <key column="PARK_PARKING_ID" />
+      <one-to-many class="ParkingQuota" />
+    </bag>
+  </class>
+
+  <sql-query name="GetVueParkingByEvent">
+     <![CDATA[
+      DECLARE
+	      @eventId int = :eventID,
+	      @eventType varchar(30)
+
+      SELECT @eventType = EV_TYPE FROM T_EVEN WHERE EV_ID = @eventId
+
+      SELECT
+	      parking.PARK_PARKING_ID AS ID,
+	      parking.PARK_PARKING_NOM AS ParkingNom,
+	      typeVehicule.PARK_TYPE_VEHICULE_NOM AS TypeVehiculeNom,
+	      parking.PARK_PARKING_JAUGE AS Jauge,
+	      titreAccesSupport.TITRE_ACCES_SUPPORT_NOM AS SupportNom,
+	      titreAccesType.TITRE_ACCES_TYPE_NOM AS TypeParking,
+	      (
+		      SELECT cal.CAL_DATE_JOUR
+		      FROM T_CAL cal
+		      WHERE cal.CAL_NUM_JOURNEE = parking.CAL_NUM_JOURNEE_DEBUT AND cal.CAL_EVT_ID = @eventId
+	      ) AS JourneeDebut,
+	      (
+		      SELECT cal.CAL_DATE_JOUR
+		      FROM T_CAL cal
+		      WHERE cal.CAL_NUM_JOURNEE = parking.CAL_NUM_JOURNEE_FIN AND cal.CAL_EVT_ID = @eventId
+	      ) AS JourneeFin
+
+      FROM PARK_PARKING parking
+      INNER JOIN T_TITRE_ACCES_SUPPORT titreAccesSupport ON parking.TITRE_ACCES_SUPPORT_ID = titreAccesSupport.TITRE_ACCES_SUPPORT_ID
+      INNER JOIN PARK_TYPE_VEHICULE typeVehicule ON parking.PARK_TYPE_VEHICULE_ID = typeVehicule.PARK_TYPE_VEHICULE_ID
+      INNER JOIN T_TITRE_ACCES_TYPE titreAccesType ON parking.TITRE_ACCES_TYPE_ID = titreAccesType.TITRE_ACCES_TYPE_ID
+      WHERE parking.EV_TYPE = @eventType
+    ]]>
+  </sql-query>
+
+</hibernate-mapping>

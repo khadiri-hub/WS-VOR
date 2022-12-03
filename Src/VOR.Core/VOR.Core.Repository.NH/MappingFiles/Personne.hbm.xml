@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="VOR.Core.Domain" assembly="VOR.Core">
+  <class name="Personne" table="PERSONNE">
+    <id name="ID" type="Int32">
+      <column name="ID_PERSONNE" sql-type="int" not-null="true" unique="true" />
+      <generator class="identity" />
+    </id>
+    <property name="NomFR">
+      <column name="NOM_FR" sql-type="nvarchar" not-null="true" />
+    </property>
+    <property name="PrenomFR">
+      <column name="PRENOM_FR" sql-type="nvarchar" not-null="true" />
+    </property>
+    <property name="NomAR">
+      <column name="NOM_AR" sql-type="nvarchar" not-null="true" />
+    </property>
+    <property name="PrenomAR">
+      <column name="PRENOM_AR" sql-type="nvarchar" not-null="true" />
+    </property>
+    <property name="Telef">
+      <column name="TELEPHONE" sql-type="nvarchar" not-null="true" />
+    </property>
+    <many-to-one name="TypePersonne">
+      <column name="ID_TYPE_PERSONNE" sql-type="int" not-null="false" />
+    </many-to-one>
+    <many-to-one name="Agence">
+      <column name="ID_AGENCE" sql-type="int" not-null="false" />
+    </many-to-one>
+  </class>
+</hibernate-mapping>

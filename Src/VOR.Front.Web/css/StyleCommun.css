@@ -1,0 +1,388 @@
+﻿.btnMediaAction {
+    width:23px !important;
+    height:23px !important;
+    border-width: 0px !important;
+    border-radius:5px !important;
+    padding: 0 !important;
+}
+.btnMediaActionDelete, .btnMediaActionView, .btnMediaActionDelete:hover, .btnMediaActionView:hover {
+    background-image:url(../Images/imagesCommunes/trash.png) !important;
+    background-color:transparent !important;
+}
+body .btnMediaActionView, body .btnMediaActionView:hover {
+    background-image:url(../Images/imagesCommunes/loupe.png) !important;
+    padding: 0px !important;
+}
+.rddlPopup_Default {
+    max-height:500px;
+    overflow-y:auto;
+}
+
+.btn-lang-en, .btn-lang-fr-dis, .btn-lang-en-dis, .btn-lang-fr {
+    width: 30px !important;
+    height: 20px !important;
+    background-image: url(../Images/imagesCommunes/fr.png) !important;
+    background-color: transparent !important;
+    border: none !important;
+    border-width: 0px;
+    cursor: pointer;
+    margin-top: 2px;
+    margin-left: 5px;
+    padding:0px !important;
+}
+.btn-lang-en {
+    background-image: url(../Images/imagesCommunes/uk.png) !important;
+    padding:0px !important;
+}
+
+.btn-lang-en-dis, .btn-lang-fr-dis {
+    background-image: url(../Images/imagesCommunes/fr-dis.png) !important;
+    cursor: default !important;
+    padding:0px !important;
+}
+
+.btn-lang-en-dis {
+    background-image: url(../Images/imagesCommunes/uk-dis.png) !important;
+    padding:0px !important;
+}
+.ddlComptes {
+    max-width:270px;
+}
+.formulaire .requiredField > input[type="text"],.formulaire .requiredField > input[type="email"],.formulaire .requiredField > input[type="password"],.formulaire select.requiredField, table.requiredField, div.requiredField input[type="text"], .formulaire input[type="text"].requiredField {
+    border:#f00 1px solid !important;
+}
+
+.formulaire .requiredField > input[type="text"],.formulaire .requiredField > input[type="email"],.formulaire .requiredField > input[type="password"],.formulaire select.requiredField, div.requiredField input[type="text"], .formulaire input[type="text"].requiredField {
+    background-color: #fef8f8 !important;
+}
+
+.formulaire .RadComboBox.requiredField {
+    border:#f00 1px solid !important;
+    background-color: #fef8f8;
+}
+
+.formulaire .RadComboBox.requiredField input[type="text"] {
+    border: none !important;
+}
+
+.RadUpload .ruFileWrap
+{
+    height: auto !important;
+}
+#ctl00_MainContent__demandeAccredPresseUC__radDateNaissance {
+    padding: 0px !important;
+    margin: 0px !important;
+    height: 0 !important;
+}
+
+a.download-pdf {
+    background-image: url(../Images/imagesCommunes/icon-download-pdf.png);
+    background-repeat: no-repeat;
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+}
+
+a.lnk-download-pdf {
+    background-image: url(../Images/Icones/pdf.png);
+    background-repeat: no-repeat;
+    display: inline-block;
+    padding-left: 20px;
+}
+
+a.i {
+    background-repeat: no-repeat;
+    padding: 1px 0 1px 18px;
+}
+
+a.i-new-win {
+    background-image: url(../Images/imagesCommunes/i-new-win.png);
+}
+
+a.i-person {
+    background-image: url(../Images/imagesCommunes/i-person.png);
+}
+
+a.i-file {
+    background-image: url(../Images/imagesCommunes/i-file.png);
+}
+
+.ValEquipmenetPresseRow {
+    width: 100%;
+    border: 1px solid #8f8f8f;
+    margin-bottom: 20px;
+}
+.ValEquipementPressCell1, .ValEquipementPressCell2 { 
+    display: table-cell;
+    width: 734px;
+    padding: 10px;
+}
+.ValEquipementPressCell2 {
+    width:  200px;
+    text-align: center;
+    background:#e5e5e5;
+    border-left: 1px solid #8f8f8f;
+    vertical-align: middle;
+}
+    .ValEquipementPressCell2 .RadInput_Default .riLabel {
+        color: #8f8f8f;
+    }
+    .ValEquipementPressCell2 input[type=text] {
+        text-align: center;
+    }
+.IPTelYN input[type=radio] {
+    margin: 0 5px 0 0;
+}
+.clear {
+    clear: both;
+}
+.content {
+    padding: 10px;
+}
+.btnSetFrench, .btnSetEnglish, .btnSetFrenchDis, .btnSetEnglishDis {
+    background-color: transparent;
+    background-image: url("../Images/imagesCommunes/fr.png");
+    cursor: pointer;
+    height: 20px;
+    width: 30px;
+    display: inline-block;
+}
+
+.btnSetEnglish {
+    background-image: url("../Images/imagesCommunes/uk.png");
+}
+
+.btnSetFrenchDis, .btnSetEnglishDis {
+    background-image: url("../Images/imagesCommunes/fr-dis.png");
+    cursor: default;
+}
+
+.btnSetEnglishDis {
+    background-image: url("../Images/imagesCommunes/uk-dis.png");
+}
+
+.edit-photo {
+    position: relative;
+}
+
+.edit-photo > div.overlay {
+    display: none;
+    background-color: rgba(255, 255, 255, 0.6);
+    bottom: 0;
+    padding: 5px 0;
+    position: absolute;
+    text-align: center;
+    width: 180px;
+    margin-left: 85px;
+}
+
+.edit-photo:hover > div.overlay {
+    display: block;
+}
+
+.edit-photo input.btnIDPhotoMaker[type="button"] {
+    background-color: transparent !important;
+    background-image: url("../images/btn-camera.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    border: medium none !important;
+    height: 30px !important;
+    padding: 0 !important;
+    width: 45px !important;
+}
+
+.edit-imgRecu {
+    position: relative;
+}
+
+    .edit-imgRecu > div.overlay {
+        display: none;
+        background-color: rgba(255, 255, 255, 0.6);
+        bottom: 0;
+        padding: 5px 0;
+        position: absolute;
+        text-align: center;
+        width: 580px;
+    }
+
+    .edit-imgRecu:hover > div.overlay {
+        display: block;
+    }
+
+    .edit-imgRecu input.btnIDPhotoMaker[type="button"] {
+        background-color: transparent !important;
+        background-image: url("../images/btn-camera.png");
+        background-position: center center;
+        background-repeat: no-repeat;
+        border: medium none !important;
+        height: 30px !important;
+        padding: 0 !important;
+        width: 45px !important;
+    }
+
+.formulaire .formulaire-item {
+    display: inline-block;
+    margin: 0 5px 8px 5px;
+}
+
+.formulaire label {
+    font-weight: bold;
+}
+
+.formulaire-item > div {
+    margin-top: 3px;
+}
+aside, article {
+    float: left;
+    width: 280px;
+    margin-right: 20px;
+}
+article {
+    margin: 100px;
+    margin: 0;
+}
+.logo {
+    width: 100%;
+    height: 150px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.CalendrierContainer {
+    border-collapse: collapse;
+}
+
+    .CalendrierContainer > table tbody td.day {
+        background-color: #f9f9f9;
+        height: 30px;
+        padding: 0;
+        width: 50px;
+        text-align: center;
+    }
+
+    .CalendrierContainer > table tbody td.day > span {
+        display: block;
+        line-height: 30px;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        font-weight: bold;
+    }
+
+    .CalendrierContainer > table tbody td.day > span.day-active {
+        background-color: #fff;
+        cursor: pointer;
+    }
+
+    /*.CalendrierContainer > table tbody td.day > span.day-active:hover {
+        background-color: #ead8cb;
+    }*/
+
+    .CalendrierContainer > table tbody td.day > span.day-selected {
+        /*background-color: #d47c3c !important;*/
+        color: #fff;
+        cursor: pointer;
+    }
+
+    .CalendrierContainer > table tbody td.day > span.aspNetDisabled:not(.day-selected) {
+        background-color: #ccc !important;
+        color: #888 !important;
+        cursor: no-drop;
+    }
+
+    .CalendrierContainer > table tbody td.day > span.aspNetDisabled.day-selected {
+        opacity: 0.5;
+        cursor: default;
+    }
+
+fieldset {
+    border: 1px solid silver;
+    margin: 0;
+}
+
+    fieldset legend {
+        color: #f49d04;
+        font-weight: bold;
+    }
+
+select[disabled], input[type="text"][disabled], textarea[disabled] {
+    background-color: #e2e2e2 !important;
+}
+
+.AccredVignette {
+    float: left;
+    width: 314px;
+    margin-right: 10px;
+    border: 1px solid #e1e1e1;
+    background: #FFF;
+    margin-top: 10px;
+}
+
+.AccredVignette .DemandeHeader {
+    background-color: #00503C;
+    height: 32px;
+}
+
+    .AccredVignette .DemandeHeader > span {
+        padding: 8px 8px 8px 25px;
+        color: #FFF;
+        font-size: 13px;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin: 0;
+        background-image: url(../Images/imagesCommunes/group.png);
+        background-repeat: no-repeat;
+        background-position: 5px center;
+        border-width: 0;
+        display: block;
+    }
+
+.AccredVignette .DemandeEtat {
+    min-height: 30px;
+    padding: 5px 8px;
+    border-bottom: 1px dashed #e5e5e5;
+}
+
+.AccredVignette .DemandeEtat span {
+    display: block;
+}
+
+.AccredVignette .DemandeInfos {  
+    padding: 10px;
+}
+
+.AccredVignette .DemandeInfos img {
+    float: left;
+    border: 1px solid #e5e5e5;
+    margin-right: 10px;
+}
+
+.AccredVignette .DemandeInfos .accredNom {
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.AccredVignette .DemandeInfos .accredNom span {
+    display: block;
+}
+
+.demo-container fieldset {
+    padding: 10px;
+    float: left;
+}
+
+.demo-container {
+    background-image: url(bg_img.png);
+    position: relative;
+    width: 675px;
+    height: 430px;
+}
+
+.info {
+ 
+    font-size: 14px;
+    left: 183px;
+    top: 15px;
+}

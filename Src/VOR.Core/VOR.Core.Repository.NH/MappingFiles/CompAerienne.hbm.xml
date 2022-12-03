@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="VOR.Core.Domain" assembly="VOR.Core">
+  <class name="CompAerienne" table="COMP_AERIENNE">
+    <id name="ID" type="Int32">
+      <column name="ID_COMP_AERIENNE" sql-type="int" not-null="true" unique="true" />
+      <generator class="identity" />
+    </id>
+    <property name="Nom">
+      <column name="NOM" sql-type="nvarchar" not-null="true" />
+    </property>
+  </class>
+
+  <sql-query name="IsCompagnieSupprimable" callable="true">
+    DECLARE @nb INT
+
+    SELECT @nb=sum(allReference.nb) FROM
+    (
+    SELECT count(*) as nb FROM VOL WHERE ID_COMP_AERIENNE=:Id
+    ) allReference
+
+    IF @nb = 0
+    SELECT 1
+    ELSE
+    SELECT 0
+  </sql-query>
+  
+</hibernate-mapping>

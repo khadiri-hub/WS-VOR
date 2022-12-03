@@ -1,0 +1,87 @@
+﻿<script src="${baseUrl}/lib/fabric.min.js"></script>
+<script src="${baseUrl}/lib/webcam.min.js?_=${timestamp}"></script>
+<link href="${baseUrl}/css/style.css?_=${timestamp}" rel="stylesheet" />
+
+<div class="IDPhotoMaker-ui-container">
+    <div id="IDPhotoMaker-ui-home">
+        <div id="IDPhotoMaker-ui-home-droparea" class="IDPhotoMaker-ui-content IDPhotoMaker-ui-home-content">
+            <div class="IDPhotoMaker-ui-home-droparea-content">
+                <div class="IDPhotoMaker-ui-home-drag">
+                    <span class="IDPhotoMaker-ui-home-drag-img"></span>
+                    <span class="IDPhotoMaker-ui-home-drag-text">${strings.home.txtDrag}</span>
+                </div>
+                <div class="IDPhotoMaker-ui-home-separator">
+                    <span class="IDPhotoMaker-ui-home-separator-line"></span>
+                    <span class="IDPhotoMaker-ui-home-separator-text">${strings.home.txtSeparator}</span>
+                </div>
+                <div>
+                    <input id="home_btn_camera" class="IDPhotoMaker-ui-button IDPhotoMaker-ui-home-button IDPhotoMaker-ui-home-button-camera" type="button" value="${strings.home.btnCamera}" />
+                </div>
+                <div class="IDPhotoMaker-ui-home-separator">
+                    <span class="IDPhotoMaker-ui-home-separator-line"></span>
+                    <span class="IDPhotoMaker-ui-home-separator-text">${strings.home.txtSeparator}</span>
+                </div>
+                <div>
+                    <input id="home_btn_upload" class="IDPhotoMaker-ui-button IDPhotoMaker-ui-home-button IDPhotoMaker-ui-home-button-import" type="button" value="${strings.home.btnImport}" />
+                    <input type="file" id="home_fileupload" accept="{{each imageExtensions}}.${$value},{{/each}}" style="display: none; width: 0;" />
+                    <div class="IDPhotoMaker-ui-info">
+                        <ul>
+                            <li>${strings.home.txtImageExtensions.format(imageExtensions.join(", "))}</li>
+                            {{if imageColorRequired}}
+                                <li>${strings.home.txtImageColorRequired}</li>
+                            {{/if}}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="IDPhotoMaker-ui-bottom">
+            <div class="IDPhotoMaker-ui-bottom-l">
+                <input type="button" id="home_btn_exit" class="IDPhotoMaker-ui-button" value="${strings.home.btnExit}" />
+            </div>
+            <div class="IDPhotoMaker-ui-clear"></div>
+        </div>
+    </div>
+    <div id="IDPhotoMaker-ui-camera" style="display:none;">
+        <div class="IDPhotoMaker-ui-content IDPhotoMaker-ui-camera-content">
+            <div class="IDPhotoMaker-ui-camera-preview"></div>
+        </div>
+        <div class="IDPhotoMaker-ui-bottom">
+            <div class="IDPhotoMaker-ui-bottom-l">
+                <input id="camera_btn_start" type="button" class="IDPhotoMaker-ui-button-small IDPhotoMaker-ui-button-small-play" title="${strings.camera.btnStart}" />
+                <input id="camera_btn_stop" type="button" class="IDPhotoMaker-ui-button-small IDPhotoMaker-ui-button-small-stop" title="${strings.camera.btnStop}" disabled="disabled" />
+            </div>
+            <div class="IDPhotoMaker-ui-bottom-r">
+                <input id="camera_btn_cancel" class="IDPhotoMaker-ui-button" type="button" value="${strings.camera.btnCancel}" />
+                <input id="camera_btn_capture" class="IDPhotoMaker-ui-button IDPhotoMaker-ui-button-validate" type="button" value="${strings.camera.btnCapture}" style="display: none;" />
+            </div>
+            <div class="IDPhotoMaker-ui-clear"></div>
+        </div>
+    </div>
+    <div id="IDPhotoMaker-ui-editor" style="display:none;">
+        <div class="IDPhotoMaker-ui-content IDPhotoMaker-ui-editor-content">
+            <div class="IDPhotoMaker-ui-editor-toolbar">
+                <input type="button" id="btn_zoomOut" class="IDPhotoMaker-ui-editor-toolbar-item IDPhotoMaker-ui-button-small IDPhotoMaker-ui-button-small-zoomOut" />              
+                <input type="button" id="btn_zoomIn" class="IDPhotoMaker-ui-editor-toolbar-item IDPhotoMaker-ui-button-small IDPhotoMaker-ui-button-small-zoomIn" />
+                <span class="IDPhotoMaker-ui-editor-toolbar-item IDPhotoMaker-ui-editor-toolbar-separator"></span>
+                <input type="button" id="btn_rotateL" class="IDPhotoMaker-ui-editor-toolbar-item IDPhotoMaker-ui-button-small IDPhotoMaker-ui-button-small-rotateL" title="${strings.editor.btnRotateL}" />
+                <input type="button" id="btn_rotateR" class="IDPhotoMaker-ui-editor-toolbar-item IDPhotoMaker-ui-button-small IDPhotoMaker-ui-button-small-rotateR" title="${strings.editor.btnRotateR}" />
+                <input type="button" id="btn_flipH" class="IDPhotoMaker-ui-editor-toolbar-item IDPhotoMaker-ui-button-small IDPhotoMaker-ui-button-small-flipH" title="${strings.editor.btnFlipH}" />
+                <input type="button" id="btn_flipV" class="IDPhotoMaker-ui-editor-toolbar-item IDPhotoMaker-ui-button-small IDPhotoMaker-ui-button-small-flipV" title="${strings.editor.btnFlipV}" />
+                <div style="clear: both;"></div>
+            </div>
+            <div Id="canvas_container" class="IDPhotoMaker-ui-editor-canvas-holder">
+            </div>
+        </div>
+        <div class="IDPhotoMaker-ui-bottom">
+            <div class="IDPhotoMaker-ui-bottom-l">
+                <input type="button" id="btn_Exit" class="IDPhotoMaker-ui-button" value="${strings.editor.btnExit}" />
+            </div>
+            <div class="IDPhotoMaker-ui-bottom-r">
+                <input type="button" id="btn_newPhoto" class="IDPhotoMaker-ui-button" value="${strings.editor.btnNew}" />
+                <input type="button" id="btn_save" class="IDPhotoMaker-ui-button IDPhotoMaker-ui-button-validate" value="${strings.editor.btnSave}" />
+            </div>          
+            <div class="IDPhotoMaker-ui-clear"></div>
+        </div>
+    </div>
+</div>

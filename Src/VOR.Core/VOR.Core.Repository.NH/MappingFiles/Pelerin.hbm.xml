@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="VOR.Core.Domain" assembly="VOR.Core">
+	<class name="Pelerin" table="PELERIN">
+		<id name="ID" type="Int32">
+			<column name="ID_PELERIN" sql-type="int" not-null="true" unique="true" />
+			<generator class="identity" />
+		</id>
+		<property name="NomFrancais">
+			<column name="NOM_FRANCAIS" sql-type="nvarchar" not-null="true" />
+		</property>
+		<property name="PrenomFrancais">
+			<column name="PRENOM_FRANCAIS" sql-type="nvarchar" not-null="true" />
+		</property>
+		<property name="NomArabe">
+			<column name="NOM_ARABE" sql-type="nvarchar" not-null="true" />
+		</property>
+		<property name="PrenomArabe">
+			<column name="PRENOM_ARABE" sql-type="nvarchar" not-null="true" />
+		</property>
+		<property name="DateNaissance">
+			<column name="DATE_NAISSANCE" sql-type="datetime" not-null="true" />
+		</property>
+		<property name="NumPassport">
+			<column name="NUM_PASSPORT" sql-type="nvarchar" not-null="true" />
+		</property>
+		<property name="DateExpiration">
+			<column name="DATE_EXPIRATION" sql-type="datetime" not-null="true" />
+		</property>
+		<property name="Telephone">
+			<column name="TELEPHONE" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="Telephone1">
+			<column name="TELEPHONE_1" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="Telephone2">
+			<column name="TELEPHONE_2" sql-type="nvarchar" not-null="false" />
+		</property>
+		<property name="PrixVentePack">
+			<column name="PRIX_VENTE_PACK" sql-type="int" not-null="true" />
+		</property>
+		<property name="MontantPaye">
+			<column name="MONTANT_PAYE" sql-type="int" not-null="true" />
+		</property>
+		<property name="IdPersonne">
+			<column name="ID_PERSONNE" sql-type="int" not-null="false" />
+		</property>
+		<property name="Photo" type="BinaryBlob">
+			<column name="PHOTO" sql-type="image" not-null="false" />
+		</property>
+		<property name="EvaluationVoyage">
+			<column name="EVALUATION_VOYAGE" sql-type="int" not-null="false" />
+		</property>
+		<property name="BadgeToDownload">
+			<column name="BADGE_TO_DOWNLOAD" sql-type="int" not-null="false" />
+		</property>
+		<property name="Commentaire">
+			<column name="COMMENTAIRE" sql-type="nvarchar" not-null="true" />
+		</property>
+		<property name="TypePelerinID">
+			<column name="ID_TYPE_PELERIN" sql-type="int" not-null="false" />
+		</property>
+		<property name="EvaluationPelerin">
+			<column name="EVALUATION_PELERIN" sql-type="int" not-null="false" />
+		</property>
+		<many-to-one name="EtatCivil">
+			<column name="ID_ETATCIVIL" sql-type="int" not-null="false" />
+		</many-to-one>
+		<many-to-one name="Sexe">
+			<column name="ID_SEXE" sql-type="int" not-null="false" />
+		</many-to-one>
+
+		<many-to-one name="Evenement">
+			<column name="ID_EVENEMENT" sql-type="int" not-null="false" />
+		</many-to-one>
+		<many-to-one name="Programme">
+			<column name="ID_PROGRAMME" sql-type="int" not-null="false" />
+		</many-to-one>
+		<property name="DateCreation">
+			<column name="DATE_CREATION" sql-type="datetime" not-null="false" />
+		</property>
+		<property name="DateUpdate">
+			<column name="DATE_UPDATE" sql-type="datetime" not-null="false" />
+		</property>
+		<property name="TransportPaye">
+			<column name="TRANSPORT_PAYE" sql-type="bit" not-null="true" />
+		</property>
+		<property name="RepasPaye">
+			<column name="REPAS_PAYE" sql-type="bit" not-null="true" />
+		</property>
+		<property name="AssuranceMaladie">
+			<column name="ASSURANCE_MALADIE" sql-type="bit" not-null="true" />
+		</property>
+		<property name="Stop">
+			<column name="STOP" sql-type="bit" not-null="true" />
+		</property>
+		<property name="NbrVaccin">
+			<column name="NBR_VACCIN" sql-type="int" not-null="false" />
+		</property>
+		<property name="AlerteDescription">
+			<column name="DESCRIPTION_ALERTE" sql-type="int" not-null="false" />
+		</property>
+		
+		<many-to-one name="TypeChambre">
+			<column name="ID_TYPE_CHAMBRE" sql-type="int" not-null="false" />
+		</many-to-one>
+		<many-to-one name="ChambreMakkah">
+			<column name="ID_CHAMBRE_MAKKAH" sql-type="int" not-null="false" />
+		</many-to-one>
+		<many-to-one name="ChambreMedine">
+			<column name="ID_CHAMBRE_MEDINE" sql-type="int" not-null="false" />
+		</many-to-one>
+		<many-to-one name="Agence">
+			<column name="ID_AGENCE" sql-type="int" not-null="false" />
+		</many-to-one>
+		<many-to-one name="RefVille">
+			<column name="ID_REF_VILLE" sql-type="int" not-null="false" />
+		</many-to-one>
+		<many-to-one name="Alerte">
+			<column name="ID_ALERTE" sql-type="int" not-null="false" />
+		</many-to-one>
+		<many-to-one name="Visa">
+			<column name="ID_VISA" sql-type="int" not-null="false"/>
+		</many-to-one>
+		<bag name="Hotels" cascade="all-delete-orphan" lazy="true" inverse="true">
+			<key column="ID_PELERIN" />
+			<one-to-many class="TPelerinHotel" />
+		</bag>
+		<bag name="Personnes" cascade="all-delete-orphan" lazy="true" inverse="true">
+			<key column="ID_PELERIN" />
+			<one-to-many class="TPersonnePelerin" />
+		</bag>
+		<bag name="Pelerins" cascade="all" lazy="true" inverse="true">
+			<key column="ID_PELERIN_1" />
+			<one-to-many class="TPelerinPelerin" />
+		</bag>
+		<bag table="T_PELERIN_VACCIN" name="Vaccins" lazy="true" cascade="none">
+			<key column="ID_PELERIN" />
+			<many-to-many class="Vaccin" column="ID_VACCIN" />
+		</bag>
+	</class>
+
+	<sql-query name="SetBadgeToDownload">
+		update PELERIN set BADGE_TO_DOWNLOAD = :toDownload where ID_PELERIN in(:lstIdPelerin)
+	</sql-query>
+
+	<sql-query name="GetPelerinByEventIDAndAgenceID">
+		SELECT DISTINCT
+		pelerin.ID_PELERIN as ID,
+		pelerin.ID_TYPE_PELERIN as IdTypePelerin,
+		pelerin.NOM_FRANCAIS as NomFrancais,
+		pelerin.PRENOM_FRANCAIS as PrenomFrancais,
+		pelerin.NOM_ARABE as NomArabe,
+		pelerin.PRENOM_ARABE as PrenomArabe,
+		vaccin.NOM as NomVaccin,
+		pelerin.NBR_VACCIN as NbrVaccination,
+		pelerin.DATE_NAISSANCE as DateNaissance,
+		pelerin.NUM_PASSPORT as NumPassport,
+		pelerin.DATE_EXPIRATION as DateExpiration,
+		pelerin.TELEPHONE_1 as Telephone,
+		pelerin.PRIX_VENTE_PACK as PrixVentePack,
+		pelerin.MONTANT_PAYE as MontantPaye,
+		pelerin.EVALUATION_VOYAGE as EvaluationVoyage,
+		pelerin.COMMENTAIRE as Commentaire,
+		pelerin.EVALUATION_PELERIN as EvaluationPelerin,
+		CASE WHEN TRANSPORT_PAYE = 1 THEN 'OUI' ELSE 'NON' END AS TransportPaye,
+		CASE WHEN REPAS_PAYE = 1 THEN 'OUI' ELSE 'NON' END AS RepasPaye,
+		CASE WHEN ASSURANCE_MALADIE = 1 THEN 'OUI' ELSE 'NON' END AS AssuranceMaladie,
+		CASE WHEN STOP = 1 THEN 'OUI' ELSE 'NON' END AS Stop,
+		etatCivil.ETATCIVIL as EtatCivil,
+		sexe.TYPE as Sexe,
+		evenement.Nom as EvenementNom,
+		programme.NOM_PROGRAMME as ProgrammeNom,
+		typeChambre.CODE as CodeChambre,
+		typeChambre.NOM as TypeChambreNom,
+		pp.COULEUR as Couleur,
+		pelerin.DATE_CREATION as DateCreation,
+		typeProgramme.CODE as CodeTypeProgramme,
+		CAST(pelerin.photo AS VARBINARY(8000)) AS Photo,
+		alerte.Libelle as Alert,
+		DATEADD(day, visa.VALIDITE, visa.DATE) as DateExpirationVisa,
+		statut.NOM as Statut,
+		motifStatut.NOM as MotifStatut,
+		pnr.HEURE_DEPART as HeureDepart,
+		pnr.HEURE_ARRIVEE as HeureArrivee,
+		villeDepart.CODE as LieuDepart,
+		villeArrivee.CODE as LieuArrivee,
+		agence.ALIAS as Agence
+		FROM PELERIN pelerin
+		LEFT JOIN T_PELERIN_PELERIN pp ON pp.ID_PELERIN_1 = pelerin.ID_PELERIN OR pp.ID_PELERIN_2 = pelerin.ID_PELERIN
+		INNER JOIN EVENEMENT evenement ON evenement.ID_EVENEMENT = pelerin.ID_EVENEMENT
+		LEFT JOIN T_PELERIN_VACCIN pelerin_vaccin ON pelerin_vaccin.ID_PELERIN = pelerin.ID_PELERIN
+		LEFT JOIN T_VACCIN vaccin ON vaccin.ID_VACCIN = pelerin_vaccin.ID_VACCIN
+		LEFT JOIN TYPE_PELERIN typePelerin ON typePelerin.ID_TYPE_PELERIN = pelerin.ID_TYPE_PELERIN
+		INNER JOIN PNR pnr ON pnr.ID_PNR = evenement.ID_PNR
+		INNER JOIN VILLE villeDepart ON pnr.LIEU_DEPART = villeDepart.ID_VILLE
+		INNER JOIN VILLE villeArrivee ON pnr.LIEU_ARRIVEE = villeArrivee.ID_VILLE
+		INNER JOIN ETATCIVIL etatCivil ON pelerin.ID_ETATCIVIL = etatCivil.ID_ETATCIVIL
+		INNER JOIN SEXE sexe ON sexe.ID_SEXE = pelerin.ID_SEXE
+		INNER JOIN PROGRAMME programme ON programme.ID_PROGRAMME = pelerin.ID_PROGRAMME
+		INNER JOIN TYPE_PROGRAMME typeProgramme ON programme.ID_TYPE_PROGRAMME = typeProgramme.ID_TYPE_PROGRAMME
+		INNER JOIN TYPE_CHAMBRE typeChambre ON typeChambre.ID_TYPE_CHAMBRE = pelerin.ID_TYPE_CHAMBRE
+		INNER JOIN AGENCE agence ON pelerin.ID_AGENCE = agence.ID_AGENCE
+		LEFT JOIN ALERTE alerte ON pelerin.ID_ALERTE = alerte.ID_ALERTE
+		LEFT JOIN VISA visa ON pelerin.ID_VISA = visa.ID_VISA
+		LEFT JOIN  STATUT_PELERIN statut ON statut.ID_STATUT_PELERIN = pelerin.ID_STATUT_PELERIN
+		LEFT JOIN  MOTIF_STATUT_PELERIN motifStatut ON motifStatut.ID_MOTIF_STATUT_PELERIN = pelerin.ID_MOTIF_STATUT_PELERIN
+		WHERE
+		pelerin.ID_EVENEMENT = ISNULL(:eventID, pelerin.ID_EVENEMENT)
+		AND pelerin.ID_AGENCE = ISNULL(:agenceID, pelerin.ID_AGENCE)
+		AND (:chambreID IS NULL OR (:chambreID IS NOT NULL AND pelerin.ID_CHAMBRE_MAKKAH = :chambreID) OR (:chambreID IS NOT NULL AND pelerin.ID_CHAMBRE_MEDINE = :chambreID))
+		AND (:statutPelerinID IS NULL OR (:statutPelerinID IS NOT NULL AND pelerin.ID_STATUT_PELERIN = :statutPelerinID))
+		AND (:motifStatutPelerinID IS NULL OR (:motifStatutPelerinID IS NOT NULL AND pelerin.ID_MOTIF_STATUT_PELERIN = :motifStatutPelerinID))
+		ORDER BY pp.COULEUR DESC, pelerin.DATE_CREATION DESC
+	</sql-query>
+
+	<sql-query name="GetPelerinSansMakkahChambreByEventID">
+		SELECT DISTINCT
+		pelerin.ID_PELERIN as ID,
+		pelerin.NOM_FRANCAIS as NomFrancais,
+		pelerin.PRENOM_FRANCAIS as PrenomFrancais,
+		pelerin.NOM_ARABE as NomArabe,
+		pelerin.PRENOM_ARABE as PrenomArabe,
+		pelerin.DATE_NAISSANCE as DateNaissance,
+		pelerin.NUM_PASSPORT as NumPassport,
+		pelerin.DATE_EXPIRATION as DateExpiration,
+		pelerin.TELEPHONE as Telephone,
+		pelerin.PRIX_VENTE_PACK as PrixVentePack,
+		pelerin.MONTANT_PAYE as MontantPaye,
+		pelerin.EVALUATION_VOYAGE as EvaluationVoyage,
+		pelerin.COMMENTAIRE as Commentaire,
+		pelerin.EVALUATION_PELERIN as EvaluationPelerin,
+		etatCivil.ETATCIVIL as EtatCivil,
+		sexe.TYPE as Sexe,
+		evenement.Nom as EvenementNom,
+		programme.NOM_PROGRAMME as ProgrammeNom,
+		typeChambre.CODE as CodeChambre,
+		typeChambre.NOM as TypeChambreNom,
+		pp.COULEUR as Couleur,
+		pelerin.DATE_CREATION as DateCreation,
+		typeProgramme.CODE as CodeTypeProgramme,
+		CAST(pelerin.photo AS VARBINARY(8000)) AS Photo,
+		alerte.Libelle as Alert,
+		agence.ALIAS as Agence,
+		CASE WHEN REPAS_PAYE = 1 THEN 'OUI' ELSE 'NON' END AS RepasPaye
+		FROM PELERIN pelerin
+		LEFT JOIN T_PELERIN_PELERIN pp ON pp.ID_PELERIN_1 = pelerin.ID_PELERIN OR pp.ID_PELERIN_2 = pelerin.ID_PELERIN
+		INNER JOIN EVENEMENT evenement ON evenement.ID_EVENEMENT = pelerin.ID_EVENEMENT
+		INNER JOIN ETATCIVIL etatCivil ON pelerin.ID_ETATCIVIL = etatCivil.ID_ETATCIVIL
+		INNER JOIN SEXE sexe ON sexe.ID_SEXE = pelerin.ID_SEXE
+		INNER JOIN PROGRAMME programme ON programme.ID_PROGRAMME = pelerin.ID_PROGRAMME
+		INNER JOIN TYPE_PROGRAMME typeProgramme ON programme.ID_TYPE_PROGRAMME = typeProgramme.ID_TYPE_PROGRAMME
+		INNER JOIN TYPE_CHAMBRE typeChambre ON typeChambre.ID_TYPE_CHAMBRE = pelerin.ID_TYPE_CHAMBRE
+		INNER JOIN AGENCE agence ON pelerin.ID_AGENCE = agence.ID_AGENCE
+		LEFT JOIN ALERTE alerte ON pelerin.ID_ALERTE = alerte.ID_ALERTE
+		WHERE
+		pelerin.ID_EVENEMENT = :eventID
+		AND pelerin.ID_CHAMBRE_MAKKAH IS NULL
+		AND pelerin.ID_AGENCE = ISNULL(:agenceID, pelerin.ID_AGENCE)
+		ORDER BY pp.COULEUR DESC, pelerin.DATE_CREATION DESC
+	</sql-query>
+
+	<sql-query name="GetPelerinSansMedineChambreByEventID">
+		SELECT DISTINCT
+		pelerin.ID_PELERIN as ID,
+		pelerin.NOM_FRANCAIS as NomFrancais,
+		pelerin.PRENOM_FRANCAIS as PrenomFrancais,
+		pelerin.NOM_ARABE as NomArabe,
+		pelerin.PRENOM_ARABE as PrenomArabe,
+		pelerin.DATE_NAISSANCE as DateNaissance,
+		pelerin.NUM_PASSPORT as NumPassport,
+		pelerin.DATE_EXPIRATION as DateExpiration,
+		pelerin.TELEPHONE as Telephone,
+		pelerin.PRIX_VENTE_PACK as PrixVentePack,
+		pelerin.MONTANT_PAYE as MontantPaye,
+		pelerin.EVALUATION_VOYAGE as EvaluationVoyage,
+		pelerin.COMMENTAIRE as Commentaire,
+		pelerin.EVALUATION_PELERIN as EvaluationPelerin,
+		etatCivil.ETATCIVIL as EtatCivil,
+		sexe.TYPE as Sexe,
+		evenement.Nom as EvenementNom,
+		programme.NOM_PROGRAMME as ProgrammeNom,
+		typeChambre.CODE as CodeChambre,
+		typeChambre.NOM as TypeChambreNom,
+		pp.COULEUR as Couleur,
+		pelerin.DATE_CREATION as DateCreation,
+		typeProgramme.CODE as CodeTypeProgramme,
+		CAST(pelerin.photo AS VARBINARY(8000)) AS Photo,
+		alerte.Libelle as Alert,
+		agence.ALIAS as Agence,
+		CASE WHEN REPAS_PAYE = 1 THEN 'OUI' ELSE 'NON' END AS RepasPaye
+		FROM PELERIN pelerin
+		LEFT JOIN T_PELERIN_PELERIN pp ON pp.ID_PELERIN_1 = pelerin.ID_PELERIN OR pp.ID_PELERIN_2 = pelerin.ID_PELERIN
+		INNER JOIN EVENEMENT evenement ON evenement.ID_EVENEMENT = pelerin.ID_EVENEMENT
+		INNER JOIN ETATCIVIL etatCivil ON pelerin.ID_ETATCIVIL = etatCivil.ID_ETATCIVIL
+		INNER JOIN SEXE sexe ON sexe.ID_SEXE = pelerin.ID_SEXE
+		INNER JOIN PROGRAMME programme ON programme.ID_PROGRAMME = pelerin.ID_PROGRAMME
+		INNER JOIN TYPE_PROGRAMME typeProgramme ON programme.ID_TYPE_PROGRAMME = typeProgramme.ID_TYPE_PROGRAMME
+		INNER JOIN TYPE_CHAMBRE typeChambre ON typeChambre.ID_TYPE_CHAMBRE = pelerin.ID_TYPE_CHAMBRE
+		INNER JOIN AGENCE agence ON pelerin.ID_AGENCE = agence.ID_AGENCE
+		LEFT JOIN ALERTE alerte ON pelerin.ID_ALERTE = alerte.ID_ALERTE
+		WHERE
+		pelerin.ID_EVENEMENT = :eventID
+		AND pelerin.ID_CHAMBRE_MEDINE IS NULL
+		AND pelerin.ID_AGENCE = ISNULL(:agenceID, pelerin.ID_AGENCE)
+		ORDER BY pp.COULEUR DESC, pelerin.DATE_CREATION DESC
+	</sql-query>
+
+	<sql-query name="IsPelerinExistByYear" callable="true">
+		select ID_PELERIN AS ID FROM pelerin WHERE UPPER(NOM_FRANCAIS) = UPPER(:nomFR) AND UPPER(PRENOM_FRANCAIS) = UPPER(:prenomFR) AND year(date_creation) =:dateCreationYear
+	</sql-query>
+
+	<sql-query name="SetStatutPelerin">
+		update PELERIN set ID_STATUT_PELERIN = :statutPelerinID, ID_MOTIF_STATUT_PELERIN = :motifStatutPelerinID where ID_PELERIN in(:lstIdPelerin)
+	</sql-query>
+
+	<sql-query name="GetPelerinSansMakkahChambreByEventEncours">
+		SELECT distinct
+		pelerin.ID_PELERIN as ID,
+		pelerin.NOM_FRANCAIS as NomFrancais,
+		pelerin.PRENOM_FRANCAIS as PrenomFrancais,
+		pelerin.NOM_ARABE as NomArabe,
+		pelerin.PRENOM_ARABE as PrenomArabe,
+		pelerin.DATE_NAISSANCE as DateNaissance,
+		sexe.TYPE as Sexe,
+		typeChambre.CODE as CodeChambre,
+		typeChambre.NOM as TypeChambreNom,
+		typeProgramme.CODE as CodeTypeProgramme,
+		pp.COULEUR as Couleur,
+		pelerin.DATE_CREATION as DateCreation,
+		CAST(pelerin.photo AS VARBINARY(8000)) AS Photo,
+		alerte.Libelle as Alert,
+		pnr.HEURE_DEPART as HeureDepart,
+		pnr.HEURE_ARRIVEE as HeureArrivee,
+		villeDepart.CODE as LieuDepart,
+		villeArrivee.CODE as LieuArrivee,
+		evenement.DATE_DEBUT as DateDebutEvenement,
+		agence.ALIAS as Agence,
+		CASE WHEN REPAS_PAYE = 1 THEN 'OUI' ELSE 'NON' END AS RepasPaye
+		FROM PELERIN pelerin
+		LEFT JOIN T_PELERIN_PELERIN pp ON pp.ID_PELERIN_1 = pelerin.ID_PELERIN OR pp.ID_PELERIN_2 = pelerin.ID_PELERIN
+		INNER JOIN EVENEMENT evenement ON evenement.ID_EVENEMENT = pelerin.ID_EVENEMENT AND evenement.ENCOURS = 1
+		INNER JOIN PNR pnr ON pnr.ID_PNR = evenement.ID_PNR
+		INNER JOIN VILLE villeDepart ON pnr.LIEU_DEPART = villeDepart.ID_VILLE
+		INNER JOIN VILLE villeArrivee ON pnr.LIEU_ARRIVEE = villeArrivee.ID_VILLE
+		INNER JOIN ETATCIVIL etatCivil ON pelerin.ID_ETATCIVIL = etatCivil.ID_ETATCIVIL
+		INNER JOIN SEXE sexe ON sexe.ID_SEXE = pelerin.ID_SEXE
+		INNER JOIN PROGRAMME programme ON programme.ID_PROGRAMME = pelerin.ID_PROGRAMME
+		INNER JOIN TYPE_PROGRAMME typeProgramme ON programme.ID_TYPE_PROGRAMME = typeProgramme.ID_TYPE_PROGRAMME
+		INNER JOIN TYPE_CHAMBRE typeChambre ON typeChambre.ID_TYPE_CHAMBRE = pelerin.ID_TYPE_CHAMBRE
+		INNER JOIN AGENCE agence ON pelerin.ID_AGENCE = agence.ID_AGENCE
+		LEFT JOIN ALERTE alerte ON pelerin.ID_ALERTE = alerte.ID_ALERTE
+		WHERE
+		pelerin.ID_CHAMBRE_MAKKAH IS NULL
+		AND pelerin.ID_AGENCE = ISNULL(:agenceID, pelerin.ID_AGENCE)
+		AND pelerin.ID_EVENEMENT in (:lstEventIds)
+		ORDER BY evenement.DATE_DEBUT asc, pp.COULEUR DESC, pelerin.DATE_CREATION DESC
+	</sql-query>
+
+	<sql-query name="GetPelerinSansMedineChambreByEventEncours">
+		SELECT distinct
+		pelerin.ID_PELERIN as ID,
+		pelerin.NOM_FRANCAIS as NomFrancais,
+		pelerin.PRENOM_FRANCAIS as PrenomFrancais,
+		pelerin.NOM_ARABE as NomArabe,
+		pelerin.PRENOM_ARABE as PrenomArabe,
+		pelerin.DATE_NAISSANCE as DateNaissance,
+		sexe.TYPE as Sexe,
+		typeChambre.CODE as CodeChambre,
+		typeChambre.NOM as TypeChambreNom,
+		typeProgramme.CODE as CodeTypeProgramme,
+		pp.COULEUR as Couleur,
+		pelerin.DATE_CREATION as DateCreation,
+		CAST(pelerin.photo AS VARBINARY(8000)) AS Photo,
+		alerte.Libelle as Alert,
+		pnr.HEURE_DEPART as HeureDepart,
+		pnr.HEURE_ARRIVEE as HeureArrivee,
+		villeDepart.CODE as LieuDepart,
+		villeArrivee.CODE as LieuArrivee,
+		evenement.DATE_DEBUT as DateDebutEvenement,
+		agence.ALIAS as Agence,
+		CASE WHEN REPAS_PAYE = 1 THEN 'OUI' ELSE 'NON' END AS RepasPaye
+		FROM PELERIN pelerin
+		LEFT JOIN T_PELERIN_PELERIN pp ON pp.ID_PELERIN_1 = pelerin.ID_PELERIN OR pp.ID_PELERIN_2 = pelerin.ID_PELERIN
+		INNER JOIN EVENEMENT evenement ON evenement.ID_EVENEMENT = pelerin.ID_EVENEMENT AND evenement.ENCOURS = 1
+		INNER JOIN PNR pnr ON pnr.ID_PNR = evenement.ID_PNR
+		INNER JOIN VILLE villeDepart ON pnr.LIEU_DEPART = villeDepart.ID_VILLE
+		INNER JOIN VILLE villeArrivee ON pnr.LIEU_ARRIVEE = villeArrivee.ID_VILLE
+		INNER JOIN ETATCIVIL etatCivil ON pelerin.ID_ETATCIVIL = etatCivil.ID_ETATCIVIL
+		INNER JOIN SEXE sexe ON sexe.ID_SEXE = pelerin.ID_SEXE
+		INNER JOIN PROGRAMME programme ON programme.ID_PROGRAMME = pelerin.ID_PROGRAMME
+		INNER JOIN TYPE_PROGRAMME typeProgramme ON programme.ID_TYPE_PROGRAMME = typeProgramme.ID_TYPE_PROGRAMME
+		INNER JOIN TYPE_CHAMBRE typeChambre ON typeChambre.ID_TYPE_CHAMBRE = pelerin.ID_TYPE_CHAMBRE
+		INNER JOIN AGENCE agence ON pelerin.ID_AGENCE = agence.ID_AGENCE
+		LEFT JOIN ALERTE alerte ON pelerin.ID_ALERTE = alerte.ID_ALERTE
+		WHERE
+		pelerin.ID_CHAMBRE_MEDINE IS NULL
+		AND pelerin.ID_AGENCE = ISNULL(:agenceID, pelerin.ID_AGENCE)
+		AND pelerin.ID_EVENEMENT in (:lstEventIds)
+		ORDER BY evenement.DATE_DEBUT asc, pp.COULEUR DESC, pelerin.DATE_CREATION DESC
+	</sql-query>
+
+	<sql-query name="GetCountPelerinByEventID">
+		SELECT
+		count(*)
+		FROM PELERIN pelerin
+		WHERE
+		pelerin.ID_EVENEMENT = :eventID
+	</sql-query>
+
+	<sql-query name="GetNbrPelerinsByEventIds">
+		SELECT
+		pelerin.ID_PELERIN as ID
+		FROM PELERIN pelerin
+		WHERE pelerin.ID_EVENEMENT in (:eventIds)
+	</sql-query>
+
+	<sql-query name="GetListPelerinsByEventIds">
+		SELECT
+		pelerin.ID_PELERIN as ID, pelerin.ID_EVENEMENT as EvenementID, MONTANT_PAYE as MontantPaye, PRIX_VENTE_PACK as PrixVentePack
+		FROM PELERIN pelerin
+		WHERE pelerin.ID_EVENEMENT in (:eventIds)
+	</sql-query>
+</hibernate-mapping>

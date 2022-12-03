@@ -1,0 +1,32 @@
+<img src="zone4.png" width="306" height="493" border="0" usemap="#map" />
+
+<map name="map">
+<!-- #$-:Image map file created by GIMP Image Map plug-in -->
+<!-- #$-:GIMP Image Map plug-in by Maurits Rijk -->
+<!-- #$-:Please do not edit lines starting with "#$" -->
+<!-- #$VERSION:2.3 -->
+<!-- #$AUTHOR:dtran -->
+<area shape="rect" coords="0,0,306,19"  nohref="nohref" />
+<area shape="rect" coords="0,20,305,43"  nohref="nohref" />
+<area shape="rect" coords="0,43,305,63"  nohref="nohref" />
+<area shape="rect" coords="0,63,305,84"  nohref="nohref" />
+<area shape="rect" coords="0,84,305,107"  nohref="nohref" />
+<area shape="rect" coords="0,108,304,129"  nohref="nohref" />
+<area shape="rect" coords="0,129,304,150"  nohref="nohref" />
+<area shape="rect" coords="0,150,304,171"  nohref="nohref" />
+<area shape="rect" coords="0,171,304,192"  nohref="nohref" />
+<area shape="rect" coords="0,192,304,213"  nohref="nohref" />
+<area shape="rect" coords="0,213,304,236"  nohref="nohref" />
+<area shape="rect" coords="0,236,304,258"  nohref="nohref" />
+<area shape="rect" coords="0,258,304,279"  nohref="nohref" />
+<area shape="rect" coords="0,279,304,300"  nohref="nohref" />
+<area shape="rect" coords="0,300,304,321"  nohref="nohref" />
+<area shape="rect" coords="0,321,304,342"  nohref="nohref" />
+<area shape="rect" coords="0,342,304,363"  nohref="nohref" />
+<area shape="rect" coords="0,363,304,384"  nohref="nohref" />
+<area shape="rect" coords="0,384,304,406"  nohref="nohref" />
+<area shape="rect" coords="0,406,304,429"  nohref="nohref" />
+<area shape="rect" coords="0,429,304,450"  nohref="nohref" />
+<area shape="rect" coords="0,450,304,471"  nohref="nohref" />
+<area shape="rect" coords="0,471,304,492"  nohref="nohref" />
+</map>

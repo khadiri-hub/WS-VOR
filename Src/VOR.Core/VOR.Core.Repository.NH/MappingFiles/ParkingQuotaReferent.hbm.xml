@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="VOR.Core.Domain" assembly="VOR.Core">
+  <class name="ParkingQuotaReferent" table="PARK_QUOTA_REFERENT">
+    <composite-id>
+      <key-many-to-one name="Quota" class="ParkingQuota" column="PARK_QUOTA_ID" />
+      <key-many-to-one name="Person" class="VOR.Core.Domain.PersonRef,VOR.Core" column="PER_ID" />
+    </composite-id>
+  </class>
+</hibernate-mapping>

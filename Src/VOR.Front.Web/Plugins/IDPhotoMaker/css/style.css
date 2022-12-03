@@ -1,0 +1,231 @@
+﻿
+
+
+/* container */
+
+.IDPhotoMaker-ui-clear {
+    clear: both;
+}
+
+.IDPhotoMaker-ui-container {
+    /*border: 1px solid #ccc;
+    border-radius: 3px;
+    box-shadow: 2px 3px 6px -3px silver;*/
+    background-color: #fff;
+    font-family: trebuchet ms;
+    padding: 10px;
+    width: 700px;
+}
+
+.IDPhotoMaker-ui-content {
+    height: 413px;
+}
+
+.IDPhotoMaker-ui-bottom {
+    margin-top: 10px;
+}
+
+.IDPhotoMaker-ui-bottom-r {
+    float: right;
+}
+
+.IDPhotoMaker-ui-bottom-r input[type=button] {
+    margin: 0 0 0 5px;
+}
+
+.IDPhotoMaker-ui-bottom-l {
+    float: left;
+}
+
+.IDPhotoMaker-ui-bottom-l input[type=button] {
+    margin: 0 5px 0 0;
+}
+
+.IDPhotoMaker-ui-info {
+    font-size: 12px;
+    background-color: #f5f5f5;
+    margin: auto;
+    border-radius: 2px;
+    width: 360px;
+}
+
+.IDPhotoMaker-ui-info ul {
+    padding: 8px 0 8px 30px;
+    text-align: left;
+    line-height: 18px;
+}
+
+
+/* buttons */
+
+input.IDPhotoMaker-ui-button[type=button] {
+    background: #d7d7d7;
+    border: medium none;
+    border-radius: 3px;
+    color: #333;
+    cursor: pointer;
+    font-family: trebuchet ms;
+    font-weight: bold;
+    padding: 8px;
+    min-width: 90px;
+    height: 36px;
+    outline: none;
+}
+
+input.IDPhotoMaker-ui-button[type=button]:hover { background: #e5e5e5; }
+input.IDPhotoMaker-ui-button[type=button]:active { background: #d7d7d7; }
+input.IDPhotoMaker-ui-button-validate[type=button] { background: #d5622a; color: #fff; }
+input.IDPhotoMaker-ui-button-validate[type=button]:hover { background: #e87740; }
+input.IDPhotoMaker-ui-button-validate[type=button]:active { background: #d5622a; }
+
+
+input.IDPhotoMaker-ui-button-small[type=button]  {
+    background-repeat : no-repeat;
+    background-image: url("../images/icons.png");
+    background-color: transparent;
+    border: none;
+    display: inline-block;
+    height: 36px;
+    padding: 0;
+    width: 36px;
+    outline: none;
+}
+
+input.IDPhotoMaker-ui-button-small[type=button]:hover { background-color: #e8e8e8; }
+input.IDPhotoMaker-ui-button-small[type=button]:active { background-color: #9ecce2; }
+input.IDPhotoMaker-ui-button-small[type=button][disabled=disabled] { background-color: transparent;opacity: 0.2; }
+
+
+
+/* home */
+
+#IDPhotoMaker-ui-home input.IDPhotoMaker-ui-home-button {
+    background-image: url("../images/icons.png");
+    background-repeat: no-repeat;
+    background-color: #d5622a;
+    color: #fff;
+    height: 40px;
+    padding-left: 41px;
+    text-align: left;
+    width: 300px; 
+    font-size: 12px;
+}
+
+#IDPhotoMaker-ui-home input.IDPhotoMaker-ui-home-button[type=button]:hover { background-color: #666; }
+
+#IDPhotoMaker-ui-home input.IDPhotoMaker-ui-home-button-camera[type=button] { background-position: -247px -32px; }
+#IDPhotoMaker-ui-home input.IDPhotoMaker-ui-home-button-import[type=button] { background-position: -247px -74px; }
+
+#IDPhotoMaker-ui-home .IDPhotoMaker-ui-home-content {  
+    border: 2px dashed #fff;
+    border-radius: 3px;
+    color: #666;
+    text-align: center;
+    height: 409px !important;
+}
+
+#IDPhotoMaker-ui-home .IDPhotoMaker-ui-home-droparea-hover {
+    border-color: #e0e0e0 !important;
+    background-color: #f0f0f0;
+}
+
+    #IDPhotoMaker-ui-home .IDPhotoMaker-ui-home-droparea-hover .IDPhotoMaker-ui-home-separator-text {
+        background-color: #f0f0f0;
+    }
+
+#IDPhotoMaker-ui-home .IDPhotoMaker-ui-home-droparea-content {  
+    position: relative;
+    top: 10px;
+}
+
+#IDPhotoMaker-ui-home .IDPhotoMaker-ui-home-drag-img {
+    background-image: url(../images/icons.png);
+    background-repeat: no-repeat;
+    background-position: -12px -51px;
+    display: block;   
+    height: 85px;    
+    width: 85px;
+    margin: auto;
+}
+
+#IDPhotoMaker-ui-home .IDPhotoMaker-ui-home-drag-text {
+    font-size: 23px;
+}
+
+#IDPhotoMaker-ui-home .IDPhotoMaker-ui-home-separator {
+    position: relative;
+    text-align: center;
+    margin: 35px auto;
+    width: 200px;
+}
+
+#IDPhotoMaker-ui-home .IDPhotoMaker-ui-home-separator-line {
+    border-top: 1px solid #e1e1e1;
+    display: inline-block;
+    width: 100%;
+}
+
+#IDPhotoMaker-ui-home .IDPhotoMaker-ui-home-separator-text {
+    z-index: 20;
+    position: absolute;
+    display: block;
+    top: -10px;
+    background-color: #fff;
+    padding: 0px 10px;
+    left: 80px;
+    font-size: 16px;
+}
+
+
+
+/* camera */
+
+#IDPhotoMaker-ui-camera .IDPhotoMaker-ui-camera-content {
+    background-color: #333;
+    text-align: center;
+}
+
+#IDPhotoMaker-ui-camera .IDPhotoMaker-ui-camera-preview {
+    width: 590px;
+    height: 413px;
+    margin: auto;
+}
+
+#IDPhotoMaker-ui-camera input.IDPhotoMaker-ui-button-small-play[type=button] { background-position: -216px 0; }
+#IDPhotoMaker-ui-camera input.IDPhotoMaker-ui-button-small-stop[type=button] { background-position: -252px 0; }
+
+
+
+/* editor */
+
+#IDPhotoMaker-ui-editor .IDPhotoMaker-ui-editor-canvas-holder {
+    height: 360px;
+    background-image: url(data:image/gif;base64,R0lGODlhCgAKAIAAAOLi4v///yH5BAAHAP8ALAAAAAAKAAoAAAIRhB2ZhxoM3GMSykqd1VltzxQAOw==);
+}
+
+
+#IDPhotoMaker-ui-editor .IDPhotoMaker-ui-editor-toolbar {
+    background-color: #f9f9f9;
+    border: 1px solid #e1e1e1;
+    margin-bottom: 5px;
+    padding: 5px;
+}
+
+#IDPhotoMaker-ui-editor .IDPhotoMaker-ui-editor-toolbar-item {
+    float: left;
+    margin: 0 3px;
+}
+
+#IDPhotoMaker-ui-editor .IDPhotoMaker-ui-editor-toolbar-separator {
+    border-right: 1px solid #e1e1e1;
+    display: inline-block;
+    height: 36px;
+    margin: 0 10px;
+}
+
+#IDPhotoMaker-ui-editor .IDPhotoMaker-ui-editor-toolbar input.IDPhotoMaker-ui-button-small-zoomOut[type=button] { background-position: 0 0; }
+#IDPhotoMaker-ui-editor .IDPhotoMaker-ui-editor-toolbar input.IDPhotoMaker-ui-button-small-zoomIn[type=button] { background-position: -36px 0; }
+#IDPhotoMaker-ui-editor .IDPhotoMaker-ui-editor-toolbar input.IDPhotoMaker-ui-button-small-rotateL[type=button] { background-position: -72px 0; }
+#IDPhotoMaker-ui-editor .IDPhotoMaker-ui-editor-toolbar input.IDPhotoMaker-ui-button-small-rotateR[type=button] { background-position: -108px 0; }
+#IDPhotoMaker-ui-editor .IDPhotoMaker-ui-editor-toolbar input.IDPhotoMaker-ui-button-small-flipH[type=button] { background-position: -144px 0; }
+#IDPhotoMaker-ui-editor .IDPhotoMaker-ui-editor-toolbar input.IDPhotoMaker-ui-button-small-flipV[type=button] { background-position: -180px 0; }

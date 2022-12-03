@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="VOR.Core.Domain" assembly="VOR.Core">
+  <class name="PersonFFT" table="TFR_PERSON_FFT">
+    <id name="ID" type="Int32">
+      <column name="PER_ID" sql-type="int" not-null="true" unique="true" />
+    </id>
+    <property name="RestaurationDroit" type="Int32">
+      <column name="RED_ID" sql-type="int" not-null="false" />
+    </property>
+    <property name="JoueurDroit" type="Int32">
+      <column name="JOD_ID" sql-type="int" not-null="false" />
+    </property>
+    <property name="ParkingDroit" type="Int32">
+      <column name="PAK_ID" sql-type="int" not-null="false" />
+    </property>
+    <property name="CompteProfilId" type="Int32">
+      <column name="COP_ID" sql-type="int" not-null="false" />
+    </property>
+    <many-to-one name="IntervenantDroit" class="IntervenantDroit" column="ITD_ID" fetch="join"/>
+    <many-to-one name="PersonRef" class="PersonRef" column="PER_ID" fetch="join"/>
+   
+  </class>
+
+</hibernate-mapping>

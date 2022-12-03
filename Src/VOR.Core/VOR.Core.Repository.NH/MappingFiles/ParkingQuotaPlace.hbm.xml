@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="VOR.Core.Domain" assembly="VOR.Core">
+  <class name="ParkingQuotaPlace" table="PARK_QUOTA_PLACE">
+    <id name="ID" type="Int32">
+      <column name="PARK_QUOTA_PLACE_ID" sql-type="int" not-null="true" unique="true" />
+      <generator class="identity" />
+    </id>
+    <many-to-one name="Quota">
+      <column name="PARK_QUOTA_ID" sql-type="int" not-null="true" />
+    </many-to-one>
+    <property name="NumJournee">
+      <column name="CAL_NUM_JOURNEE" sql-type="int" not-null="true" />
+    </property>
+    <property name="NbPlaces">
+      <column name="PARK_QUOTA_PLACE_NB" sql-type="int" not-null="true" />
+    </property>
+  </class>
+  <sql-query name="GetVueCompteParkingQuotaPlaces">
+    <![CDATA[
+      SELECT
+	      quota.PARK_QUOTA_ID AS QuotaId,
+	      quotaPlace.PARK_QUOTA_PLACE_ID AS QuotaPlaceId,
+        parking.TITRE_ACCES_TYPE_ID AS ParkingTypeId,
+	      cal.CAL_DATE_JOUR AS Jour,
+	      quotaPlace.PARK_QUOTA_PLACE_NB AS Jauge,
+	      quotaPlace.PARK_QUOTA_PLACE_NB - (
+		      SELECT ISNULL(SUM(COMPTE_PARAMETRE_PARKING_QUOTA_NB), 0) FROM TFR_COMPTE_PARAMETRE_PARKING_QUOTA
+		      WHERE PARK_QUOTA_PLACE_ID = quotaPlace.PARK_QUOTA_PLACE_ID
+	      ) AS PlacesRestantes,
+	      ISNULL(compteQuota.COMPTE_PARAMETRE_PARKING_QUOTA_NB, 0) AS PlacesAttribuees
+      FROM PARK_QUOTA_PLACE quotaPlace
+
+      INNER JOIN PARK_QUOTA quota
+	      ON quota.PARK_QUOTA_ID = quotaPlace.PARK_QUOTA_ID
+      INNER JOIN PARK_PARKING parking
+	      ON parking.PARK_PARKING_ID = quota.PARK_PARKING_ID
+      LEFT JOIN TFR_COMPTE_PARAMETRE_PARKING_QUOTA compteQuota 
+	      ON compteQuota.PARK_QUOTA_PLACE_ID = quotaPlace.PARK_QUOTA_PLACE_ID AND compteQuota.PAR_ID = :compteParametreId
+      INNER JOIN T_CAL cal
+	      ON cal.CAL_NUM_JOURNEE = quotaPlace.CAL_NUM_JOURNEE 
+
+      WHERE cal.CAL_EVT_ID = :eventId
+      AND quota.PARK_QUOTA_ID = :quotaId
+    ]]>
+  </sql-query>
+  <sql-query name="GetNbrPlacesDisponibles">
+    <![CDATA[
+      SELECT
+	      quotaPlace.PARK_QUOTA_PLACE_NB - (
+		      SELECT ISNULL(SUM(COMPTE_PARAMETRE_PARKING_QUOTA_NB), 0) FROM TFR_COMPTE_PARAMETRE_PARKING_QUOTA
+		      WHERE PARK_QUOTA_PLACE_ID = quotaPlace.PARK_QUOTA_PLACE_ID
+	      )
+      FROM PARK_QUOTA_PLACE quotaPlace
+      WHERE quotaPlace.PARK_QUOTA_PLACE_ID = :quotaPlaceId
+    ]]>
+  </sql-query>
+
+  <sql-query name="IsParkingHasQuotaPlace">
+    <![CDATA[
+      SELECT count(parking.PARK_PARKING_ID)
+      FROM  PARK_PARKING parking
+      INNER JOIN PARK_QUOTA quota
+      ON parking.PARK_PARKING_ID = quota.PARK_PARKING_ID
+      INNER JOIN
+      PARK_QUOTA_PLACE quotaPlace
+      ON quota.PARK_QUOTA_ID = quotaPlace.PARK_QUOTA_ID
+      WHERE parking.PARK_PARKING_ID = :parkingId
+    ]]>
+  </sql-query>
+  
+  <sql-query name="GetInitVueParkingQuotaPlaces">
+    <![CDATA[
+      SELECT
+      quota.PARK_QUOTA_ID AS QuotaId,
+      quotaPlace.PARK_QUOTA_PLACE_ID AS QuotaPlaceId,
+      parking.TITRE_ACCES_TYPE_ID AS ParkingTypeId,
+      cal.CAL_DATE_JOUR AS Jour,
+      parking.PARK_PARKING_JAUGE AS Jauge,
+      parking.PARK_PARKING_JAUGE AS PlacesRestantes,
+      0 AS PlacesAttribuees,
+      cal.CAL_NUM_JOURNEE AS NumJournee   
+      FROM
+      PARK_PARKING parking        
+      LEFT JOIN PARK_QUOTA quota  
+	    ON parking.PARK_PARKING_ID = quota.PARK_PARKING_ID    
+	    LEFT JOIN PARK_QUOTA_PLACE quotaPlace
+	    ON quota.PARK_QUOTA_ID = quotaPlace.PARK_QUOTA_ID        
+	    INNER JOIN T_CAL cal        
+      ON cal.CAL_NUM_JOURNEE >= parking.CAL_NUM_JOURNEE_DEBUT AND cal.CAL_NUM_JOURNEE <= parking.CAL_NUM_JOURNEE_FIN
+      WHERE cal.CAL_EVT_ID = :eventId
+      AND parking.PARK_PARKING_ID = :parkingId
+    ]]>
+  </sql-query>
+
+  <sql-query name="GetVueParkingQuotaPlaces">
+    <![CDATA[
+      SELECT
+      quota.PARK_QUOTA_ID AS QuotaId,
+      quotaPlace.PARK_QUOTA_PLACE_ID AS QuotaPlaceId,
+      parking.TITRE_ACCES_TYPE_ID AS ParkingTypeId,
+      cal.CAL_DATE_JOUR AS Jour,
+      parking.PARK_PARKING_JAUGE AS Jauge,
+      parking.PARK_PARKING_JAUGE - (
+      SELECT
+            ISNULL(SUM(quotaPlace.PARK_QUOTA_PLACE_NB),
+            0) 
+        FROM
+            PARK_QUOTA_PLACE quotaPlace
+			INNER JOIN PARK_QUOTA quota ON  quotaPlace.PARK_QUOTA_ID = quota.PARK_QUOTA_ID
+			INNER JOIN PARK_PARKING parking ON parking.PARK_PARKING_ID = quota.PARK_PARKING_ID
+		  WHERE cal.CAL_NUM_JOURNEE = quotaPlace.CAL_NUM_JOURNEE AND parking.PARK_PARKING_ID = :parkingId) AS PlacesRestantes,
+      ISNULL(quotaPlace.PARK_QUOTA_PLACE_NB, 0) AS PlacesAttribuees,
+      cal.CAL_NUM_JOURNEE AS NumJournee   
+      FROM
+      PARK_PARKING parking        
+      LEFT JOIN PARK_QUOTA quota  
+	    ON parking.PARK_PARKING_ID = quota.PARK_PARKING_ID    
+	    LEFT JOIN PARK_QUOTA_PLACE quotaPlace
+	    ON quota.PARK_QUOTA_ID = quotaPlace.PARK_QUOTA_ID        
+	    INNER JOIN T_CAL cal        
+       ON cal.CAL_NUM_JOURNEE = quotaPlace.CAL_NUM_JOURNEE
+      WHERE cal.CAL_EVT_ID = :eventId
+      AND parking.PARK_PARKING_ID = :parkingId
+      AND quota.PARK_QUOTA_ID = :parkingQuotaId
+    ]]>
+  </sql-query>
+  
+  <sql-query name="GetNbrPlacesParkingDisponibles">
+    <![CDATA[
+      SELECT DISTINCT
+      parking.PARK_PARKING_JAUGE - (
+      SELECT
+            ISNULL(SUM(quotaPlace.PARK_QUOTA_PLACE_NB),
+            0) 
+        FROM
+            PARK_QUOTA_PLACE quotaPlace
+			      INNER JOIN PARK_QUOTA quota ON  quotaPlace.PARK_QUOTA_ID = quota.PARK_QUOTA_ID
+			      INNER JOIN PARK_PARKING parking ON parking.PARK_PARKING_ID = quota.PARK_PARKING_ID
+		        WHERE quotaPlace.CAL_NUM_JOURNEE = :numJournee AND parking.PARK_PARKING_ID = :parkingId
+      )
+      FROM 
+	    PARK_PARKING parking
+	    LEFT JOIN PARK_QUOTA quota
+	    ON parking.PARK_PARKING_ID = quota.PARK_PARKING_ID
+	    LEFT JOIN PARK_QUOTA_PLACE quotaPlace
+	    ON quota.PARK_QUOTA_ID = quotaPlace.PARK_QUOTA_ID
+      WHERE quotaPlace.PARK_QUOTA_PLACE_ID = ISNULL(:placeId, quotaPlace.PARK_QUOTA_PLACE_ID)
+		  AND quotaPlace.CAL_NUM_JOURNEE = ISNULL(:numJournee, quotaPlace.CAL_NUM_JOURNEE)
+		  AND parking.PARK_PARKING_ID = :parkingId
+    ]]>
+  </sql-query>
+  
+</hibernate-mapping>

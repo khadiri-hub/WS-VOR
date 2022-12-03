@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="VOR.Core.Domain" assembly="VOR.Core">
+  <class name="Programme" table="PROGRAMME">
+    <id name="ID" type="Int32">
+      <column name="ID_PROGRAMME" sql-type="int" not-null="true" unique="true" />
+      <generator class="identity" />
+    </id>
+    <property name="Nom">
+      <column name="NOM_PROGRAMME" sql-type="nvarchar" not-null="true" />
+    </property>
+    <property name="PrixAPartirDe">
+      <column name="PRIX_A_PARTIR_DE" sql-type="int" not-null="true" />
+    </property>
+    <many-to-one name="Vol">
+      <column name="ID_VOL" sql-type="int" not-null="false" />
+    </many-to-one>
+    <many-to-one name="Evenement">
+      <column name="ID_EVENEMENT" sql-type="int" not-null="false" />
+    </many-to-one>
+    <many-to-one name="TypeProgramme">
+      <column name="ID_TYPE_PROGRAMME" sql-type="int" not-null="false" />
+    </many-to-one>
+    <bag name="Hotels" cascade="all-delete-orphan" lazy="true" inverse="true">
+      <key column="ID_PROGRAMME" />
+      <one-to-many class="TProgrammeHotel" />
+    </bag>
+  </class>
+
+  <sql-query name="IsProgrammeSupprimable" callable="true">
+    DECLARE @nb INT
+
+    SELECT @nb=sum(allReference.nb) FROM
+    (
+    SELECT count(*) as nb FROM CHAMBRE WHERE ID_PROGRAMME=:Id
+    ) allReference
+
+    IF @nb = 0
+    SELECT 1
+    ELSE
+    SELECT 0
+  </sql-query>
+
+</hibernate-mapping>

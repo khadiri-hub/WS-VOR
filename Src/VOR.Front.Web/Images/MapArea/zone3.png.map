@@ -1,0 +1,18 @@
+<img src="zone3.png" width="369" height="197" border="0" usemap="#map" />
+
+<map name="map">
+<!-- #$-:Image map file created by GIMP Image Map plug-in -->
+<!-- #$-:GIMP Image Map plug-in by Maurits Rijk -->
+<!-- #$-:Please do not edit lines starting with "#$" -->
+<!-- #$VERSION:2.3 -->
+<!-- #$AUTHOR:dtran -->
+<area shape="rect" coords="0,0,369,20"  nohref="nohref" />
+<area shape="rect" coords="0,21,368,41"  nohref="nohref" />
+<area shape="rect" coords="0,42,368,61"  nohref="nohref" />
+<area shape="rect" coords="0,61,368,84"  nohref="nohref" />
+<area shape="rect" coords="0,84,368,105"  nohref="nohref" />
+<area shape="rect" coords="0,105,368,127"  nohref="nohref" />
+<area shape="rect" coords="0,127,368,148"  nohref="nohref" />
+<area shape="rect" coords="0,148,368,170"  nohref="nohref" />
+<area shape="rect" coords="0,170,368,196"  nohref="nohref" />
+</map>

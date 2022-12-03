@@ -1,0 +1,16 @@
+<img src="courtRG.jpg" width="492" height="247" border="0" usemap="#map" />
+
+<map name="map">
+<!-- #$-:Image map file created by GIMP Image Map plug-in -->
+<!-- #$-:GIMP Image Map plug-in by Maurits Rijk -->
+<!-- #$-:Please do not edit lines starting with "#$" -->
+<!-- #$VERSION:2.3 -->
+<!-- #$AUTHOR:dtran -->
+<area shape="poly" coords="47,190,70,161,211,104,226,161"  nohref="nohref" />
+<area shape="poly" coords="211,105,265,83,295,149,227,162"  nohref="nohref" />
+<area shape="poly" coords="265,83,312,64,355,140,295,149"  nohref="nohref" />
+<area shape="poly" coords="312,63,379,36,427,67,399,72,407,99,338,110"  nohref="nohref" />
+<area shape="poly" coords="338,110,355,139,404,132,383,103"  nohref="nohref" />
+<area shape="poly" coords="383,103,458,91,482,119,404,132"  nohref="nohref" />
+<area shape="poly" coords="398,71,408,99,463,90,432,67"  nohref="nohref" />
+</map>

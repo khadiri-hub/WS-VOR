@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="VOR.Core.Domain" assembly="VOR.Core">
+  <class name="Visa" table="VISA">
+    <id name="ID" type="Int32">
+      <column name="ID_VISA" sql-type="int" not-null="true" unique="true" />
+      <generator class="identity" />
+    </id>
+    <property name="Commentaire">
+      <column name="COMMENTAIRE" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="Date">
+      <column name="DATE" sql-type="datetime" not-null="true" />
+    </property>
+    <property name="Validite">
+      <column name="VALIDITE" sql-type="int" not-null="true" />
+    </property>
+    <property name="Image" type="BinaryBlob">
+      <column name="IMG" sql-type="image" not-null="false" />
+    </property>
+    <property name="DateCreation">
+      <column name="DATE_CREATION" sql-type="date" not-null="true" />
+    </property>
+    <property name="DateModification">
+      <column name="DATE_MODIFICATION" sql-type="date" not-null="false" />
+    </property>
+    <many-to-one name="UtilisateurCreation">
+      <column name="ID_UTILISATEUR_CREATION" sql-type="int" not-null="true" />
+    </many-to-one>
+    <many-to-one name="UtilisateurModification">
+      <column name="ID_UTILISATEUR_MODIFICATION" sql-type="int" not-null="false" />
+    </many-to-one>
+  </class>
+</hibernate-mapping>

@@ -86,6 +86,7 @@ namespace VOR.Front.Web.Pages.Evenement.Edit
                     //chambre.Couleur = string.Format("#{0}", this.RadColorPicker.SelectedColor.Name);
                     chambre.Agence = Global.Container.Resolve<AgenceModel>().LoadByID(int.Parse(this._ddlAgence.SelectedValue));
                     Global.Container.Resolve<ChambreModel>().InsertOrUpdate(chambre);
+
                 }
                 else
                 {

@@ -158,7 +158,7 @@
         </asp:DropDownList>
             <asp:ImageButton runat="server" ID="_btnAfficher" ImageUrl="~/Images/imagesBack/pictoFilter.png" OnClick="_btnAfficher_Click" ClientIDMode="AutoID" Style="margin-left: 10px" Height="35" />
         </div>
-        <div style="float: right; margin-right: 10px; position: relative; top: -10px;">
+        <div style="float: right; margin-right: 10px; position: relative;">
             <div style="float: left; position: relative; top: 9px; left: 15px; margin-right: 22px;">
                 <asp:ImageButton runat="server" ID="_btnUpdate" ImageUrl="~/Images/imagesBack/pictoUpdate.png"
                     OnClientClick="if(confirm('Etes-vous sûr de vouloir éxecuter cette action ?')){ loading(true); return true; } else { return false; }"
@@ -167,11 +167,17 @@
             <div style="float: left; position: relative; left: 15px; display: none">
                 <asp:ImageButton runat="server" ID="btnPrintBadgesClick" ClientIDMode="AutoID" ImageUrl="~/Images/imagesBack/pictoBadge.png" OnClick="btnPrintBadges_Click" />
             </div>
-            <div style="float: left; position: relative; top: 9px; left: 15px;">
-                <asp:ImageButton runat="server" ID="btnExport" ImageUrl="~/Images/imagesBack/pictoExport.png" ClientIDMode="AutoID" OnClick="_btnExportToExcel_Click" />
+            <div style="float: left; position: relative; top: -1px; left: 15px; margin-right: 20px;">
+                <asp:ImageButton class="zoom" runat="server" ID="btnExportTurkish" ImageUrl="~/Images/imagesBack/turkishAirlines.png" ClientIDMode="AutoID" OnClick="btnExportTurkish_Click"/>
             </div>
-            <div style="float: left; position: relative; top: 7px; left: 15px; margin-left: 22px">
-                <img id="btnNew" class="btn disabled " alt="" runat="server" src="~/Images/imagesBack/pictoAddPelerin.png" style="cursor: pointer" />
+            <div style="float: left; position: relative; top: -1px; left: 15px; margin-right: 20px;">
+                <asp:ImageButton class="zoom" runat="server" ID="btnExportSaudia" ImageUrl="~/Images/imagesBack/saudiaAirlines.png" ClientIDMode="AutoID" OnClick="btnExportSaudia_Click" />
+            </div>
+            <div style="float: left; position: relative; top: 9px; left: 15px; display: none">
+                <asp:ImageButton class="zoom" runat="server" ID="btnExport" ImageUrl="~/Images/imagesBack/pictoExport.png" ClientIDMode="AutoID" OnClick="_btnExportToExcel_Click" />
+            </div>
+            <div style="float: left; position: relative; left: 15px;">
+                <img id="btnNew" class="zoom" alt="" runat="server" src="~/Images/imagesBack/pictoAddPelerin.png" style="cursor: pointer" />
             </div>
         </div>
     </asp:Panel>
@@ -196,8 +202,8 @@
                             <asp:ImageButton ID="_btnAlert" runat="server" Visible="false" CssClass="exclamation" ImageUrl="~/Images/imagesBack/exclamationMark.png" />
                         </ItemTemplate>
                     </telerik:GridTemplateColumn>
-                    <telerik:GridTemplateColumn DataField="IdTypePelerin" SortExpression="IdTypePelerin" FilterControlWidth="100%" AllowFiltering="false" 
-                        UniqueName="IdTypePelerin" HeaderText="Type pèlerin" 
+                    <telerik:GridTemplateColumn DataField="IdTypePelerin" SortExpression="IdTypePelerin" FilterControlWidth="100%" AllowFiltering="false"
+                        UniqueName="IdTypePelerin" HeaderText="Type pèlerin"
                         ItemStyle-HorizontalAlign="Center" HeaderStyle-Width="60px" CurrentFilterFunction="Contains" ShowFilterIcon="false" AutoPostBackOnFilter="true">
                         <ItemTemplate>
                             <asp:ImageButton ID="_imgTypePelerin" runat="server" Visible="true" ImageUrl="~/Images/imagesBack/sansType.png" />

@@ -66,6 +66,15 @@
     <Reference Include="Castle.Windsor">
       <HintPath>..\Lib\Castle\Castle.Windsor.dll</HintPath>
     </Reference>
+    <Reference Include="ClosedXML, Version=0.96.0.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ClosedXML.0.96.0\lib\net46\ClosedXML.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.16.0.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\DocumentFormat.OpenXml.2.16.0\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelNumberFormat, Version=1.1.0.0, Culture=neutral, PublicKeyToken=23c6f5d73be07eca, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ExcelNumberFormat.1.1.0\lib\net20\ExcelNumberFormat.dll</HintPath>
+    </Reference>
     <Reference Include="itextsharp">
       <HintPath>..\Lib\itextsharp.dll</HintPath>
     </Reference>
@@ -126,6 +135,7 @@
     <Reference Include="VOR.Utils">
       <HintPath>..\VOR.Utils\bin\Debug\VOR.Utils.dll</HintPath>
     </Reference>
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\font-awesome\css\font-awesome.min.css" />
@@ -180,6 +190,8 @@
     <Content Include="Images\imagesBack\pictoUpdate.png" />
     <Content Include="Images\imagesBack\previous.png" />
     <Content Include="Images\imagesBack\room.png" />
+    <Content Include="Images\imagesBack\saudiaAirlines.png" />
+    <Content Include="Images\imagesBack\turkishAirlines.png" />
     <Content Include="Images\imagesBack\visa.png" />
     <Content Include="Images\imagesBack\zoom.png" />
     <Content Include="Images\imagesBercy\bg-btn-hover.png" />
@@ -458,6 +470,7 @@
     <None Include="Images\MapArea\zone6.png.map" />
     <None Include="Images\MapArea\zone7.png.map" />
     <None Include="Images\MapArea\zone8.png.map" />
+    <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\PRESTA.pubxml" />
     <None Include="Properties\PublishProfiles\PrestaPublish.pubxml" />
     <None Include="Properties\PublishProfiles\VOYAGE OR.pubxml" />
@@ -476,6 +489,8 @@
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Ressources\Exports\export_TK.xlsx" />
+    <Content Include="Ressources\Exports\export_SV.xlsx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\BaseMasterPage\BaseMasterPage.cs">

@@ -5,6 +5,7 @@ using System.Text;
 
 namespace VOR.Core.Domain.Vues
 {
+    [Serializable]
     public class VuePelerin
     {
         public virtual int ID { get; set; }

@@ -15,6 +15,12 @@ using System.Web;
 using System.Drawing;
 using System.Configuration;
 using System.Data;
+using DocumentFormat.OpenXml.Bibliography;
+using ClosedXML.Excel;
+using System.IO;
+using System.Web.Hosting;
+using Telerik.Web.UI.ExportInfrastructure;
+using System.Globalization;
 
 namespace VOR.Front.Web.Pages.Pelerin
 {
@@ -161,6 +167,7 @@ namespace VOR.Front.Web.Pages.Pelerin
             IList<VuePelerin> lstPelerin = Global.Container.Resolve<PelerinModel>().GetPelerinByEventIDAndAgenceID(this.EventID, agenceID, null, statutPelerinID, motifStatutPelerinID);
             //lstPelerin = lstPelerin.OrderBy(p => p.IdTypePelerin).ToList();
             this.gridPelerin.DataSource = lstPelerin;
+            ViewState["lstPelerin"] = lstPelerin;
 
             if (!export)
                 this.gridPelerin.DataBind();
@@ -519,5 +526,297 @@ namespace VOR.Front.Web.Pages.Pelerin
                 Logger.Current.Error(ex);
             }
         }
+
+        protected void btnExportTurkish_Click(object sender, ImageClickEventArgs e)
+        {
+            int CELL_NO = 1;
+            int CELL_DOB = 2;
+            int CELL_GENDER = 3;
+            int CELL_LAST_NAME = 4;
+            int CELL_FIRST_NAME = 5;
+            int CELL_TITLE = 6;
+
+            Core.Domain.Evenement evenement = Global.Container.Resolve<EvenementModel>().LoadByID(this.EventID);
+            string pnrDtDepart = evenement.Pnr.HeureDepart.HasValue ? evenement.Pnr.HeureDepart.Value.ToString("yyyyMMdd") : "YYYYMMDD";
+
+            string fileName = $"VoyageOr_{pnrDtDepart}_TK.xlsx";
+
+            var templatePath = HostingEnvironment.MapPath("~/Ressources/Exports/export_TK.xlsx");
+            IList<VuePelerin> lstPelerin = (List<VuePelerin>)ViewState["lstPelerin"];
+
+            using (XLWorkbook wb = new XLWorkbook(templatePath))
+            {
+                if (lstPelerin != null && lstPelerin.Any())
+                {
+                    DataTable dt = new DataTable();
+                    IXLWorksheet workSheet = wb.Worksheet(1);
+
+                    int rowsHeader = 1;
+                    int startRow = rowsHeader + 1;
+
+                    workSheet.Row(startRow).InsertRowsBelow(lstPelerin.Count - 1);
+
+                    int i = 0;
+                   foreach (IXLRow row in workSheet.Rows().Skip(rowsHeader))
+                    {
+                        if (i < lstPelerin.Count)
+                        {
+                            VuePelerin pelerin = lstPelerin[i];
+                            row.Style.Font.Bold = false;
+
+                            IXLCell cellNo = row.Cell(CELL_NO);
+                            cellNo.Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+                            cellNo.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                            cellNo.Value = i + 1;
+
+                            IXLCell cellDoB = row.Cell(CELL_DOB);
+                            cellDoB.Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+                            cellDoB.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                            string day = pelerin.DateNaissance.Day.ToString("d");
+                            string month = formatMonth(pelerin.DateNaissance.Month);
+                            string year = pelerin.DateNaissance.Year.ToString();
+                            cellDoB.DataType = XLDataType.Text;
+                            cellDoB.SetValue<string>(Convert.ToString($"{day}-{month}-{year}"));
+
+                            IXLCell cellGender = row.Cell(CELL_GENDER);
+                            cellGender.Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+                            cellGender.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                            cellGender.Value = pelerin.Sexe.Equals("HOMME") ? "M" : "F";
+
+                            IXLCell cellLastName = row.Cell(CELL_LAST_NAME);
+                            cellLastName.Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+                            cellLastName.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                            cellLastName.Value = pelerin.NomFrancais.ToUpper();
+
+                            IXLCell cellFirstName = row.Cell(CELL_FIRST_NAME);
+                            cellFirstName.Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+                            cellFirstName.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                            cellFirstName.Value = pelerin.PrenomFrancais.ToUpper();
+
+                            IXLCell cellTitle = row.Cell(CELL_TITLE);
+                            cellTitle.Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+                            cellTitle.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                            cellTitle.Value = pelerin.Sexe.Equals("HOMME") ? "MR" : "MRS";
+
+                            i++;
+                        }
+                    }
+                }
+
+                Response.Clear();
+                Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+                Response.ContentType = "application/vnd.ms-excel";
+                if (HttpContext.Current.Request.UserAgent.Contains("Trident/7") || HttpContext.Current.Request.UserAgent.Contains("Edge/"))
+                {
+                    Response.Headers.Add("X-UA-Compatible", "IE=EmulateIE9,chrome=1");
+                    Response.Headers.Add("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
+                }
+                else
+                {
+                    Response.AddHeader("Content-Disposition", $"attachment; filename=\"{fileName}\"");
+                }
+                Response.Cookies.Add(new HttpCookie("downloadExport", "true") { HttpOnly = false, Path = "/" });
+
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    wb.SaveAs(ms);
+                    ms.WriteTo(HttpContext.Current.Response.OutputStream);
+                    Response.Flush();
+                    Response.End();
+                    Response.BinaryWrite(ms.ToArray());
+                }
+            }
+        }
+
+        protected void btnExportSaudia_Click(object sender, ImageClickEventArgs e)
+        {
+            int CELL_CODE = 1;
+            int CELL_PASS = 2;
+            int CELL_SEPARATOR_1 = 3;
+            int CELL_NAT = 4;
+            int CELL_SEPARATOR_2 = 5;
+            int CELL_DOB = 6;
+            int CELL_SEPARATOR_3 = 7;
+            int CELL_GENDER = 8;
+            int CELL_SEPARATOR_4 = 9;
+            int CELL_PASS_EXP = 10;
+            int CELL_SEPARATOR_5 = 11;
+            int CELL_NAME = 12;
+            int CELL_P = 13;
+            int CELL_NO = 14;
+            int CELL_POINT_VIRGULE = 15;
+
+
+
+            Core.Domain.Evenement evenement = Global.Container.Resolve<EvenementModel>().LoadByID(this.EventID);
+            string pnrDtDepart = evenement.Pnr.HeureDepart.HasValue ? evenement.Pnr.HeureDepart.Value.ToString("yyyyMMdd") : "YYYYMMDD";
+
+            string fileName = $"VoyageOr_{pnrDtDepart}_SV.xlsx";
+
+            var templatePath = HostingEnvironment.MapPath("~/Ressources/Exports/export_SV.xlsx");
+            IList<VuePelerin> lstPelerin = (List<VuePelerin>)ViewState["lstPelerin"];
+
+            using (XLWorkbook wb = new XLWorkbook(templatePath))
+            {
+                if (lstPelerin != null && lstPelerin.Any())
+                {
+                    DataTable dt = new DataTable();
+                    IXLWorksheet workSheet = wb.Worksheet(1);
+
+                    int rowsHeader = 1;
+                    int startRow = rowsHeader + 1;
+
+                    workSheet.Row(startRow).InsertRowsBelow(lstPelerin.Count - 1);
+
+                    int i = 0;
+                    foreach (IXLRow row in workSheet.Rows().Skip(rowsHeader))
+                    {
+                        if (i < lstPelerin.Count)
+                        {
+                            VuePelerin pelerin = lstPelerin[i];
+                            row.Style.Font.Bold = false;
+
+                            IXLCell cellCode = row.Cell(CELL_CODE);
+                            cellCode.Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+                            cellCode.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                            cellCode.Style.Font.Bold = true;
+                            cellCode.Value = "SRDOCSSVHK1-P-MAR-";
+
+                            IXLCell cellPass = row.Cell(CELL_PASS);
+                            cellPass.Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+                            cellPass.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                            cellPass.Value = pelerin.NumPassport.ToUpper();
+
+                            IXLCell cellSeparator1 = row.Cell(CELL_SEPARATOR_1);
+                            cellSeparator1.Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+                            cellSeparator1.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                            cellSeparator1.Value = "-";
+
+                            IXLCell cellNationality = row.Cell(CELL_NAT);
+                            cellNationality.Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+                            cellNationality.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                            cellNationality.Style.Font.Bold = true;
+                            cellNationality.Value = "MAR";
+
+                            IXLCell cellSeparator2 = row.Cell(CELL_SEPARATOR_2);
+                            cellSeparator2.Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+                            cellSeparator2.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                            cellSeparator2.Value = "-";
+
+                            IXLCell cellDoB = row.Cell(CELL_DOB);
+                            cellDoB.Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+                            cellDoB.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                            cellDoB.Value = pelerin.DateNaissance;
+
+                            IXLCell cellSeparator3 = row.Cell(CELL_SEPARATOR_3);
+                            cellSeparator3.Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+                            cellSeparator3.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                            cellSeparator3.Value = "-";
+
+                            IXLCell cellGender = row.Cell(CELL_GENDER);
+                            cellGender.Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+                            cellGender.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                            cellGender.Value = pelerin.Sexe.Equals("HOMME") ? "M" : "F";
+
+                            IXLCell cellSeparator4 = row.Cell(CELL_SEPARATOR_4);
+                            cellSeparator4.Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+                            cellSeparator4.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                            cellSeparator4.Value = "-";
+
+                            IXLCell cellPassExp = row.Cell(CELL_PASS_EXP);
+                            cellPassExp.Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+                            cellPassExp.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                            cellPassExp.Value = pelerin.DateExpiration;
+
+                            IXLCell cellSeparator5 = row.Cell(CELL_SEPARATOR_5);
+                            cellSeparator5.Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+                            cellSeparator5.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                            cellSeparator5.Value = "-";
+
+                            IXLCell cellName = row.Cell(CELL_NAME);
+                            cellName.Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+                            cellName.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                            var title = pelerin.Sexe.Equals("HOMME") ? "MR" : "MRS";
+                            cellName.Value = $"{pelerin.PrenomFrancais.ToUpper()}/{pelerin.NomFrancais.ToUpper()} {title}";
+
+                            IXLCell cellP = row.Cell(CELL_P);
+                            cellP.Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+                            cellP.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                            cellP.Style.Font.Bold = true;
+                            cellP.Value = "/P";
+
+                            IXLCell cellNo = row.Cell(CELL_NO);
+                            cellNo.Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+                            cellNo.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                            cellNo.Style.Font.Bold = true;
+                            cellNo.Value = i + 1;
+
+                            IXLCell cellSep = row.Cell(CELL_POINT_VIRGULE);
+                            cellSep.Style.Border.OutsideBorder = XLBorderStyleValues.Thin;
+                            cellSep.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                            cellSep.Value = ";";
+
+                            i++;
+                        }
+                    }
+                }
+
+                Response.Clear();
+                Response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+                Response.ContentType = "application/vnd.ms-excel";
+                if (HttpContext.Current.Request.UserAgent.Contains("Trident/7") || HttpContext.Current.Request.UserAgent.Contains("Edge/"))
+                {
+                    Response.Headers.Add("X-UA-Compatible", "IE=EmulateIE9,chrome=1");
+                    Response.Headers.Add("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
+                }
+                else
+                {
+                    Response.AddHeader("Content-Disposition", $"attachment; filename=\"{fileName}\"");
+                }
+                Response.Cookies.Add(new HttpCookie("downloadExport", "true") { HttpOnly = false, Path = "/" });
+
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    wb.SaveAs(ms);
+                    ms.WriteTo(HttpContext.Current.Response.OutputStream);
+                    Response.Flush();
+                    Response.End();
+                    Response.BinaryWrite(ms.ToArray());
+                }
+            }
+        }
+
+        private string formatMonth(int month)
+        {
+            switch (month)
+            {
+                case 1:
+                    return "janv.";
+                case 2:
+                    return "févr.";
+                case 3:
+                    return "mars";
+                case 4:
+                    return "avr.";
+                case 5:
+                    return "mai";
+                case 6:
+                    return "juin";
+                case 7:
+                    return "juil.";
+                case 8:
+                    return "août";
+                case 9:
+                    return "sept.";
+                case 10:
+                    return "oct.";
+                case 11:
+                    return "nov.";
+                case 12:
+                    return "déc.";
+                default:
+                    return string.Empty;
+            }
+        } 
     }
 }
